@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+
+    <head>
+        <title>Pet R US</title>
+    </head>
+
+    <body>
+        <h1>Pet R US</h1>
+        <div>
+            <strong>{{ boldmessage }}</strong><br />
+        </div>
+        <div>
+            <a href="/Store/about/">About</a><br />
+            <img src="{% static 'images/Example.jpg' %}" alt="Example image" />
+        </div>
+    </body>
+
+</html>

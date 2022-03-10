@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+
+    <head>
+        <title>Pet R US</title>
+    </head>
+
+    <body>
+        <h1>Pet R US</h1>
+        <div>
+            Pet R US about Page<br />
+        </div>
+        <div>
+            <a href="/Store/">Index</a><br />
+            <img src="{% static 'images/example.jpg' %}" alt="Example of Image" />
+            <img src="{{ MEDIA_URL }}example_media.jpg" alt="Example of image from Media" />
+        </div>
+    </body>
+
+</html>
