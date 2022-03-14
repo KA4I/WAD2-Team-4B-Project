@@ -1,0 +1,26 @@
+{% extends 'store/base.html' %} 
+{% load staticfiles %}
+
+{% block title_block %} 
+    Categories 
+{% endblock %} 
+
+{% block body_block %}
+    <div>
+        {% if category %} 
+        <h1>Looking for pet {{ category.name }}</h1>
+            
+        {% if products %} 
+        <ul>
+            {% for product in products %} 
+            <li><a href="/store/product/{{ product.slug }}">{{product.name}}</a></li>
+            {% endfor %} 
+        </ul>
+        {% else %} 
+        <strong>No avaliable products in this category.</strong>
+        {% endif %} 
+    {% else %} 
+        This category does not exist.
+    {% endif %} 
+    </div>
+{% endblock %}}
