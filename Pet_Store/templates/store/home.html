@@ -1,0 +1,51 @@
+{% extends 'store/base.html' %} 
+{% load staticfiles %} 
+
+{% block title_block %}
+    Home
+{% endblock %}
+
+{% block body_block %}
+    <div class="jumbotron p-4">
+        <div class="container">
+            <h1 class="jumbotron-heading">Pets R Us!</h1>
+            <div>
+                <h2 class="h2">
+                    {% if user.is_authenticated %} 
+                        Welcome {{ user.username }}!
+                    {% else %} 
+                        Nice to see you, check out these categories!
+                    {% endif %} 
+                </h2>
+            <strong>{{ boldmessage }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-6">
+                    <div class="card-body">
+                        <h2>All Categories</h2>
+                        <p class="card-text">
+                        {% if categories %}
+                        <ul>
+                        {% for category in categories %}
+                            <li class="nav-item">
+                            <a class="nav-link" href="{% url 'store:show_category' category.slug %}">
+                            <span data-feather="archive"></span> {{ category.name }}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {% else %}
+                        <strong>There are no categories present.</strong>
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}
