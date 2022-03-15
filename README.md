@@ -5,6 +5,9 @@ To run, ensure you have pip installed django, pillow as well as:
 * pip install -U django-registration-redux==2.2
 * pip install bcrypt
 
+You might also need to run:
+* python manage.py migrate
+
 Dropped the "supplier" and "courier" models from our database at reccommendation from the feedback we reciveved in the design spec.
 We can add these back later but for now lets focus on getting the user facing work completed.
 
