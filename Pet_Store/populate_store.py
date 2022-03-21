@@ -8,17 +8,17 @@ from store.models import Category, Product, Order, Review
 
 def populate():
 
-    toy_products = [{'uid':1,'name':'Squeaky Bone','description':'A toy bone that makes a sound!','price':2.99},
-                    {'uid':2,'name':'Ball and String','description':'Fun for all animals (but mostly cats)','price':4.99},
-                    {'uid':3,'name':'Cat Tower','description':'For cats to climb and make their home in.','price':10.99}]
+    toy_products = [{'uid':1,'name':'Squeaky Bone','description':'A toy bone that makes a sound!','price':2.99, 'likes': 1},
+                    {'uid':2,'name':'Ball and String','description':'Fun for all animals (but mostly cats)','price':4.99, 'likes': 2},
+                    {'uid':3,'name':'Cat Tower','description':'For cats to climb and make their home in.','price':10.99, 'likes': 4}]
 
-    animal_products = [{'uid':4,'name':'Lizard','description':'Perfect is you are after a more exotic pet ','price':29.99},
-                        {'uid':5,'name':'Ginger Cat','description':'Warning: This cat is known to eat tons of lasagne','price':39.99},
-                        {'uid':6,'name':'Hamster','description':'Hey hey hey, he is just a little guy and its his birthday','price':10.99}]
+    animal_products = [{'uid':4,'name':'Lizard','description':'Perfect is you are after a more exotic pet ','price':29.99, 'likes': 8},
+                        {'uid':5,'name':'Ginger Cat','description':'Warning: This cat is known to eat tons of lasagne','price':39.99, 'likes': 16},
+                        {'uid':6,'name':'Hamster','description':'Hey hey hey, he is just a little guy and its his birthday','price':10.99, 'likes': 32}]
 
-    food_products = [{'uid':7,'name':'Canned Dog Food','description':'Meat chunks in gravy, not safe for human consumption','price':1.99},
-                    {'uid':8,'name':'Crickets','description':'A lizards favourite food, beware, they jump.','price':1.99},
-                    {'uid':9,'name':'Canned Cat Food','description':'Meat chunks in brine, not safe for human comsumption','price':1.99}]
+    food_products = [{'uid':7,'name':'Canned Dog Food','description':'Meat chunks in gravy, not safe for human consumption','price':1.99, 'likes': 64},
+                    {'uid':8,'name':'Crickets','description':'A lizards favourite food, beware, they jump.','price':1.99, 'likes': 128},
+                    {'uid':9,'name':'Canned Cat Food','description':'Meat chunks in brine, not safe for human comsumption','price':1.99, 'likes': 256}]
 
     cat = {'Toys':{'products':toy_products},
             'Animals':{'products':animal_products},

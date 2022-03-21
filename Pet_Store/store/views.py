@@ -15,10 +15,12 @@ from store.forms import UserForm, UserProfileForm
 
 def home(request):
     category_list = Category.objects.all()
+    product_list = Product.objects.order_by('-likes')[:5]
 
     context_dict = {}
     context_dict['boldmessage'] = 'Enjoy your visit!'
     context_dict['categories'] = category_list
+    context_dict['products'] = product_list
 
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']

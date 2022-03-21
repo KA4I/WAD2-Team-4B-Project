@@ -30,11 +30,11 @@
                         <h2>All Categories</h2>
                         <p class="card-text">
                         {% if categories %}
-                        <ul>
+                        <ul class="list-group">
                         {% for category in categories %}
-                            <li class="nav-item">
+                            <li class="list-group-item">
                             <a class="nav-link" href="{% url 'store:show_category' category.slug %}">
-                            <span data-feather="archive"></span> {{ category.name }}
+                            <span data-feather="archive"></span> {{ category.name }}</a>
                             </li>
                         {% endfor %}
                         </ul>
@@ -45,6 +45,28 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="card mb-6">
+                    <div class="card-body">
+                        <h2>Top Products</h2>
+                        <p class="card-text">
+                        {% if products %}
+                        <ul class="list-group">
+                        {% for product in products %}
+                            <li class="list-group-item">
+                            <a class="nav-link" href="{% url 'store:show_product' product.slug %}">
+                            <span data-feather="archive"></span> {{ product.name }}</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {% else %}
+                        <strong>There are no products present.</strong>
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 </div> 
