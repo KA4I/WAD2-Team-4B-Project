@@ -27,15 +27,15 @@ def populate():
     for cat, cat_data in cat.items():
         c = add_cat(cat)
         for p in cat_data['products']:
-            add_product(c, p['name'], p['uid'], p['description'], p['price'])
+            add_product(c, p['name'], p['uid'], p['description'], p['price'], p['likes'])
 
     for c in Category.objects.all():
         for p in Product.objects.filter(category=c):
             print(f'- {c}: {p}')
 
 
-def add_product(cat, name, uid, description, price=0.99):
-    p = Product.objects.get_or_create(category=cat, name=name, uid=uid)[0]
+def add_product(cat, name, uid, description, price=0.99, likes=0):
+    p = Product.objects.get_or_create(category=cat, name=name, uid=uid, likes=likes)[0]
     p.description=description
     p.price=price
     p.save()

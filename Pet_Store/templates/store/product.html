@@ -13,10 +13,38 @@
             {{ product.description }}
             <h2>Price</h2>
             £{{ product.price }}
-            <h2>Likes</h2>
-            {{ product.likes }}
         {% else %} 
         <strong>No production information avaliable</strong>
         {% endif %}
     </div>
+</br>
+<div>
+    <strong id="Order">Ordering</strong>
+    {% if user.is_authenticated %}
+    <button id="order_btn"
+            data-productid="{{ product.uid }}"
+            data-user="{{ user.id }}"
+            class="btn btn-primary btn-sm"
+            type="button">
+        <span data-feather="shopping-bag"></span>
+        Order This Product
+        </button>
+    {% else %} 
+        Please login/register to order this product
+    {% endif %}
+</div>
+</br>
+<div>
+    <strong id="like_count">{{ product.likes }}</strong> likes
+    {% if user.is_authenticated %}
+    <button id="like_btn"
+            data-productid="{{ product.uid }}"
+            class="btn btn-primary btn-sm"
+            type="button">
+        <span data-feather="thumbs-up"></span>
+        Like Product
+        </button>
+    {% endif %}
+</div>
+    
 {% endblock %}}

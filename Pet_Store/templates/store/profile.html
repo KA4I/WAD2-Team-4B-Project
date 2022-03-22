@@ -31,7 +31,22 @@
                 <strong>This is not you!</strong>
             </p>
             {% endif %}
+        </br>
+            <div>
+                {% if orders %}
+                    {% for order in orders %} 
+                        {% if order.user.id == user.id %} 
+                            <li><a href="/store/product/{{ order.product.slug }}">{{order.product.name}}</a>  x {{order.quantity}}</li> 
+                        {% else %} 
+                            You have no orders currently
+                        {% endif %} 
+                    {% endfor %}
+                {% else %} 
+                    There are no orders to display 
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
+</br>
 {% endblock %}
