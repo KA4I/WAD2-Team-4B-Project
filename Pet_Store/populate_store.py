@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 
 import django
 django.setup()
-from store.models import Category, Product, Order, Review
+from store.models import Category, Product, Cart, Review
 
 def populate():
 

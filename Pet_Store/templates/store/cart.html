@@ -1,0 +1,51 @@
+{% extends 'store/base.html' %} 
+{% load staticfiles %} 
+
+{% block title_block %} 
+    Products 
+{% endblock %} 
+
+{% block body_block %} 
+    <div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Your Cart</h2>
+                    <p class="card-text">
+                    <strong id="Removed"></strong>
+                    {% if cart %}
+                    <ul class="list-group">
+                    {% for item in cart %}
+                    </br>
+                        <li class="list-group-item">
+                        <a class="nav-link" href="{% url 'store:show_product' item.product.slug %}">
+                        <span data-feather="archive"></span> {{ item.product.name }}</a>
+                        </li>
+                        <div>
+                        </br>
+                            <strong id="Remove">{{ item.quantity }}</strong> x
+                            {% if user.is_authenticated %}
+                            <button class="remove_btn"
+                                    data-productid="{{ item.product.uid }}"
+                                    data-user="{{ item.user.id }}"
+                                    class="btn btn-primary btn-sm"
+                                    type="button">
+                                <span data-feather="trash"></span>
+                                Remove This From Cart
+                                </button>
+                            {% else %} 
+                                Please login/register to view cart
+                            {% endif %}
+                        </br>
+                        </div>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    <strong>There are no items present.</strong>
+                    {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

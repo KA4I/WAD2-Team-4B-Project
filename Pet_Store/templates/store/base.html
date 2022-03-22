@@ -37,6 +37,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}?next=/store/">Logout</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'store:profile' user.username %}">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'store:cart' user.username %}">Cart</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'registration_register' %}">Register Here</a></li>
                         <li class="nav-item "><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>

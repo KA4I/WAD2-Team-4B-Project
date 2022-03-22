@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
-from store.models import Category, Product, UserProfile, Order
+from store.models import Category, Product, UserProfile, Cart
 from store.forms import UserForm, UserProfileForm
 
 
@@ -115,14 +115,13 @@ class ProfileView(View):
     def get(self, request, username):
         try:
             (user, user_profile, form) = self.get_user_details(username)
-            order_list = Order.objects.filter(user=user)
         except TypeError:
             return redirect(reverse('store:home'))
 
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
-                        'orders': order_list}
+                    }
 
         return render(request, 'store/profile.html', context_dict)
 
@@ -130,7 +129,6 @@ class ProfileView(View):
     def post(self, request, username):
         try:
             (user, user_profile, form) = self.get_user_details(username)
-            order_list = Order.objects.filter(user=user)
         except TypeError:
             return redirect(reverse('store:home'))
 
@@ -144,7 +142,7 @@ class ProfileView(View):
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
-                        'orders': order_list}
+                        }
 
         return render(request, 'store/profile.html', context_dict)
 
@@ -164,7 +162,7 @@ class LikeProductView(View):
 
         return HttpResponse(product.likes)
 
-class OrderProductView(View):
+class AddCartView(View):
     @method_decorator(login_required)
     def get(self, request):
         product_id = request.GET['product_id']
@@ -178,15 +176,16 @@ class OrderProductView(View):
             return HttpResponse(-1)
 
         try:
-            order = Order.objects.get_or_create(user=user, product=product)[0]
-            order.quantity += 1
-            order.save()
+            cart = Cart.objects.get_or_create(user=user, product=product)[0]
+            cart.quantity += 1
+            cart.save()
+            print("Successfly created new cart item")
             return redirect(reverse('store:home'))
         except Exception as e:
             print(e)
             return HttpResponse(-1)
 
-class RemoveOrderView(View):
+class RemoveCartView(View):
     @method_decorator(login_required)
     def get(self, request):
         product_id = request.GET['product_id']
@@ -201,9 +200,59 @@ class RemoveOrderView(View):
             return HttpResponse(-1)
 
         try:
-            order = Order.objects.get_or_create(user=user, product=product)[0]
-            order.delete()
+            cart = Cart.objects.get_or_create(user=user, product=product)[0]
+            cart.delete()
             return redirect(reverse('store:home'))
         except Exception as e:
             print(e)
             return HttpResponse(-1)
+
+class CartView(View):
+    def get_user_details(self, username):
+        try:
+            user=User.objects.get(username=username)
+        except User.DoesNotExist:
+            return None
+
+        user_profile = UserProfile.objects.get_or_create(user=user)[0]
+        form = UserProfileForm({'address': user_profile.address,
+                                'postcode': user_profile.postcode,
+                                'picture': user_profile.picture})
+        return (user, user_profile, form)
+
+    @method_decorator(login_required)
+    def get(self, request, username):
+        try:
+            (user, user_profile, form) = self.get_user_details(username)
+            cart_list = Cart.objects.filter(user=user)
+        except TypeError:
+            return redirect(reverse('store:home'))
+
+        context_dict = {'user_profile': user_profile,
+                        'selected_user': user,
+                        'form': form,
+                        'cart': cart_list}
+
+        return render(request, 'store/cart.html', context_dict)
+
+    @method_decorator(login_required)
+    def post(self, request, username):
+        try:
+            (user, user_profile, form) = self.get_user_details(username)
+            cart_list = Cart.objects.filter(user=user)
+        except TypeError:
+            return redirect(reverse('store:home'))
+
+        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('store:profile', user.username)
+        else:
+            print(form.errors)
+
+        context_dict = {'user_profile': user_profile,
+                        'selected_user': user,
+                        'form': form,
+                        'cart': cart_list}
+
+        return render(request, 'store/cart.html', context_dict)

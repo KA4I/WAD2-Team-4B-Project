@@ -19,15 +19,15 @@
     </div>
 </br>
 <div>
-    <strong id="Order">Ordering</strong>
+    <strong id="add_to_cart"></strong>
     {% if user.is_authenticated %}
-    <button id="order_btn"
+    <button id="add_btn"
             data-productid="{{ product.uid }}"
             data-user="{{ user.id }}"
             class="btn btn-primary btn-sm"
             type="button">
         <span data-feather="shopping-bag"></span>
-        Order This Product
+        Add to Cart
         </button>
     {% else %} 
         Please login/register to order this product
