@@ -1,6 +1,9 @@
+from time import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from datetime import datetime
+from django.utils import timezone
 
 
 # Create your models here.
@@ -37,6 +40,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -47,6 +51,15 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.name
 
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    time_ordered = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return "Order"
+
 class Review(models.Model):
     uid = models.IntegerField(unique=True)
     review = models.CharField(max_length=225)
@@ -55,13 +68,3 @@ class Review(models.Model):
 
     def __str__(self):
         return self.review
-
-class Order(models.Model):
-    uid = models.IntegerField(unique=True)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    dateOrdered = models.DateTimeField()
-    arrival = models.DateField()
-
-    def __str__(self):
-        return self.uid
