@@ -1,14 +1,24 @@
 {% extends 'store/base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block title_block %}
-    Register - Step 2
+    Create profile
 {% endblock %}
 
 {% block body_block %}
+<div class="container">
+    <ul class="progressbar">
+        <li class="active">Register</li>
+        <li class="active">Create Your Profile</li>
+        <li>Start Shopping</li>
+    </ul>
+</div>
+
 <div class="jumbotron p-4">
     <div class="container">
-        <h1 class="jumbotron-heading">Register Here - Step 2</h1>
+        <h1 class="jumbotron-heading">Create your profile</h1>
+        <hr>
     </div>
 </div>
 
@@ -18,8 +28,9 @@
             action="{% url 'store:register_profile' %}"
             enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Create Profile" />
+            {{ form|crispy }}
+            <hr>
+            <input class="button" type="submit" value="Create Profile" />
         </form>
     </div>
 </div>

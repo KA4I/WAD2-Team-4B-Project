@@ -145,7 +145,7 @@ class ProfileView(View):
                         }
 
         return render(request, 'store/profile.html', context_dict)
-
+      
 class LikeProductView(View):
     @method_decorator(login_required)
     def get(self, request):
