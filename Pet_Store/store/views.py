@@ -9,8 +9,8 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 from store.models import Category, Product, UserProfile, Cart
-from store.forms import UserForm, UserProfileForm
-
+from store.forms import UserForm, UserProfileForm, UserUpdateForm
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -117,10 +117,11 @@ class ProfileView(View):
             (user, user_profile, form) = self.get_user_details(username)
         except TypeError:
             return redirect(reverse('store:home'))
-
+        user_form = UserUpdateForm(instance=request.user)
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
+                        'user_form': user_form
                     }
 
         return render(request, 'store/profile.html', context_dict)
@@ -133,6 +134,7 @@ class ProfileView(View):
             return redirect(reverse('store:home'))
 
         form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        user_form = UserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save(commit=True)
             return redirect('store:profile', user.username)
@@ -142,6 +144,7 @@ class ProfileView(View):
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
+                        'user_form': user_form
                         }
 
         return render(request, 'store/profile.html', context_dict)
@@ -227,11 +230,11 @@ class CartView(View):
             cart_list = Cart.objects.filter(user=user)
         except TypeError:
             return redirect(reverse('store:home'))
-
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
-                        'cart': cart_list}
+                        'cart': cart_list,
+                        }
 
         return render(request, 'store/cart.html', context_dict)
 
@@ -253,6 +256,20 @@ class CartView(View):
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
-                        'cart': cart_list}
+                        'cart': cart_list,
+                        }
 
         return render(request, 'store/cart.html', context_dict)
+
+
+def search(request):
+    context_dict = {}
+    context_dict['boldmessage'] = 'Enjoy your visit!'
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        if search:
+            products = Product.objects.filter(name__contains=search)
+            context_dict['products'] = products
+    return render(request, 'store/search.html', context_dict)
+
+

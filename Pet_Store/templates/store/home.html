@@ -17,12 +17,28 @@
                         Nice to see you, check out these categories!
                     {% endif %} 
                 </h2>
-            <strong>{{ boldmessage }}</strong>
+            <Strong>{{ boldmessage }}</Strong>
             </div>
         </div>
     </div>
+    <div class="w-100 text-center">
+        <form action="{% url 'store:search' %}" method="GET">
+            <div class="search-box">
+                {% csrf_token %}
+                <input id="tags" class="search-txt" type="text" name="search" placeholder="Search..">
+                <input class="button button1" type="submit" name="submit" value="Search"/>
+                <a class="search-btn">
+                    <i class="fa fa-search"></i>
+                </a>
+                <br />
+            </div>
+        </form>
+    </div>
+
 
     <div class="container">
+        <br />
+        <br />
         <div class="row">
             <div class="col-md-6">
                 <div class="card mb-6">

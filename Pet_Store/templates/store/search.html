@@ -1,0 +1,50 @@
+{% extends 'store/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Search
+{% endblock %}
+
+{% block body_block %}
+    <div class="jumbotron p-4">
+        <div class="container">
+            <h1 class="jumbotron-heading">Pets R Us!</h1>
+            <div>
+                <h2 class="h2">
+                    {% if user.is_authenticated %}
+                        Welcome {{ user.username }}!
+                    {% else %}
+                        Nice to see you, check out these categories!
+                    {% endif %}
+                </h2>
+            <strong>{{ boldmessage }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <form action="{% url 'store:search' %}" method="GET">
+        <div class="search-box">
+            {% csrf_token %}
+            <input class="search-txt" type="text" name="search" id="search" placeholder="Search..">
+            <input class="button button1" type="submit" name="submit" value="Search"/>
+            <a class="search-btn">
+                <i class="fa fa-search"></i>
+            </a>
+            <br />
+        </div>
+    </form>
+    <br />
+    <br />
+    <h2>Search Results</h2>
+    <hr>
+    {% if products %}
+        <ul>
+            {% for product in products %}
+            <li><a href="/store/product/{{ product.slug }}">{{product.name}}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h4>Not Found.</h4>
+        {% endif %}
+
+{% endblock %}
