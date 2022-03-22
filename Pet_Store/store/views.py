@@ -49,6 +49,10 @@ def show_category(request, category_name_slug):
     except Category.DoesNotExist:
         context_dict['products'] = None
         context_dict['category'] = None
+        
+    Category_object = Category.objects.get(slug = category_name_slug)
+    Category_object.views = Category_object.views + 1
+    Category_object.save()
 
     return render(request, 'store/category.html', context=context_dict)
 
@@ -60,6 +64,9 @@ def show_product(request, product_name_slug):
     except Product.DoesNotExist:
         context_dict['product'] = None
         
+    product_object = Product.objects.get(slug = product_name_slug)
+    product_object.views = product_object.views + 1
+    product_object.save()   
     return render(request, 'store/product.html', context=context_dict)
 
 @login_required
