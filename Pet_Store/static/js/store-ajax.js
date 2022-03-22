@@ -23,5 +23,18 @@ $(document).ready(function() {
                 $('#order_btn').hide();
             })
     });
+
+    $('#remove_btn').click(function() {
+        var productIdVar, userIdVar;
+        productIdVar = $(this).attr('data-productid');
+        userIdVar = $(this).attr('data-user');
+
+        $.get('/store/remove_order/',
+            {'product_id': productIdVar, 'user': userIdVar},
+            function(data) {
+                $('#Remove').html(0);
+                $('#remove_btn').hide();
+            })
+    });
 });
     

@@ -14,4 +14,5 @@ urlpatterns = [
     path('profile/<username>/', views.ProfileView.as_view(), name='profile'),
     path('like_product/', views.LikeProductView.as_view(), name='like_product'),
     path('order_product/', views.OrderProductView.as_view(), name='order_product'),
+    path('remove_order/', views.RemoveOrderView.as_view(), name='remove_order'),
 ]

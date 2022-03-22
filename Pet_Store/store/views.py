@@ -115,8 +115,7 @@ class ProfileView(View):
     def get(self, request, username):
         try:
             (user, user_profile, form) = self.get_user_details(username)
-            order_list = Order.objects.all()
-            print(order_list)
+            order_list = Order.objects.filter(user=user)
         except TypeError:
             return redirect(reverse('store:home'))
 
@@ -131,8 +130,7 @@ class ProfileView(View):
     def post(self, request, username):
         try:
             (user, user_profile, form) = self.get_user_details(username)
-            order_list = Order.objects.all()
-            print(order_list)
+            order_list = Order.objects.filter(user=user)
         except TypeError:
             return redirect(reverse('store:home'))
 
@@ -183,6 +181,28 @@ class OrderProductView(View):
             order = Order.objects.get_or_create(user=user, product=product)[0]
             order.quantity += 1
             order.save()
+            return redirect(reverse('store:home'))
+        except Exception as e:
+            print(e)
+            return HttpResponse(-1)
+
+class RemoveOrderView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        product_id = request.GET['product_id']
+        user_id = request.GET['user']
+        print("Hello world!")
+        try:
+            product = Product.objects.get(id=int(product_id))
+            user = User.objects.get(id=int(user_id))
+        except Product.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError:
+            return HttpResponse(-1)
+
+        try:
+            order = Order.objects.get_or_create(user=user, product=product)[0]
+            order.delete()
             return redirect(reverse('store:home'))
         except Exception as e:
             print(e)

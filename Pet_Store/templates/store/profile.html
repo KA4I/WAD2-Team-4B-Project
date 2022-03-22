@@ -32,19 +32,45 @@
             </p>
             {% endif %}
         </br>
-            <div>
-                {% if orders %}
-                    {% for order in orders %} 
-                        {% if order.user.id == user.id %} 
-                            <li><a href="/store/product/{{ order.product.slug }}">{{order.product.name}}</a>  x {{order.quantity}}</li> 
-                        {% else %} 
-                            You have no orders currently
-                        {% endif %} 
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Your Orders</h2>
+                    <p class="card-text">
+                    {% if orders %}
+                    <ul class="list-group">
+                    {% for order in orders %}
+                    </br>
+                        <li class="list-group-item">
+                        <a class="nav-link" href="{% url 'store:show_product' order.product.slug %}">
+                        <span data-feather="archive"></span> {{ order.product.name }}</a>
+                        </li>
+                        <div>
+                        </br>
+                            <strong id="Remove">{{ order.quantity }}</strong> x
+                            {% if user.is_authenticated %}
+                            <button id="remove_btn"
+                                    data-productid="{{ order.product.uid }}"
+                                    data-user="{{ order.user.id }}"
+                                    class="btn btn-primary btn-sm"
+                                    type="button">
+                                <span data-feather="trash"></span>
+                                Remove This Order
+                                </button>
+                            {% else %} 
+                                Please login/register to order this product
+                            {% endif %}
+                        </br>
+                        </div>
                     {% endfor %}
-                {% else %} 
-                    There are no orders to display 
-                {% endif %}
+                    </ul>
+                    {% else %}
+                    <strong>There are no orders present.</strong>
+                    {% endif %}
+                    </p>
+                </div>
             </div>
+        </div>
         </div>
     </div>
 </div>
