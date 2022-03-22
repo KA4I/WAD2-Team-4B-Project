@@ -1,5 +1,6 @@
 {% extends 'store/base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block title_block %}
     Profile for {{ selected_user.username }}
@@ -22,9 +23,9 @@
             {% if selected_user == user %}
             <form method="post" action="." enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form|crispy }}
 
-                <input type="submit" value="Update" />
+                <input class="button" type="submit" value="Update" />
             </form>
             {% else %}
             <p>

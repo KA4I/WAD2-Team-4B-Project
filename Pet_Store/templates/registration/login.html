@@ -1,4 +1,5 @@
 {% extends 'store/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title_block %}
     Login
@@ -6,17 +7,17 @@
 
 {% block body_block %}
 <h1>Login</h1><br />
-<div class="container">
-<form class="form-signin" role="form" method="post" action=".">
+<hr>
+<form method="post" action=".">
     {% csrf_token %}
-    <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" name="username" id="id_username" class="form-control"
-            placeholder="Username" required autofocus><br />
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="id_password" class="form-control"
-            placeholder="Password" required><br />
-    <button class="btn btn-lg btn-primary btn-block" type="submit"
-            value="Submit">Sign in</button><br />
+    {{ form|crispy }}
+    <hr>
+    <input class="button" type="submit" value="Log In" />
+    <input type="hidden" name="next" value="{{ next }}" />
 </form>
-</div>
+
+<p>
+    Not registered?
+    <a href="{% url 'registration_register' %}">Register Here</a>
+</p>
 {% endblock %}

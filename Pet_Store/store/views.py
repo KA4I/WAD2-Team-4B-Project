@@ -139,4 +139,3 @@ class ProfileView(View):
                         'form': form}
 
         return render(request, 'store/profile.html', context_dict)
-
