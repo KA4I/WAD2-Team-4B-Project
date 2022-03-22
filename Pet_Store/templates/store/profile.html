@@ -34,5 +34,33 @@
             </p>
             {% endif %}
         </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Your Orders</h2>
+                    <p class="card-text">
+                    <strong id="Removed"></strong>
+                    {% if orders %}
+                    <ul class="list-group">
+                        {% for item in orders %}
+                        </br>
+                            <li class="list-group-item">
+                            Order #{{ item.uid }}
+                            <strong><a class="nav-link" href="{% url 'store:show_product' item.product.slug %}">
+                            <span data-feather="archive"></span> {{ item.product.name }}</a></strong>
+                            Quantity: {{ item.quantity }} </br>
+                            Arriving: {{ item.arrival_time }}
+                            </li>
+                            </br>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <strong>There are no items present.</strong>
+                    {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

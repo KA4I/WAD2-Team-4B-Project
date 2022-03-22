@@ -8,8 +8,9 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
-from store.models import Category, Product, UserProfile, Cart
+from store.models import Category, Product, UserProfile, Cart, Order
 from store.forms import UserForm, UserProfileForm
+import uuid
 
 
 # Create your views here.
@@ -115,13 +116,14 @@ class ProfileView(View):
     def get(self, request, username):
         try:
             (user, user_profile, form) = self.get_user_details(username)
+            orders=Order.objects.filter(user=user)
         except TypeError:
             return redirect(reverse('store:home'))
 
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
-                    }
+                        'orders': orders}
 
         return render(request, 'store/profile.html', context_dict)
 
@@ -129,6 +131,7 @@ class ProfileView(View):
     def post(self, request, username):
         try:
             (user, user_profile, form) = self.get_user_details(username)
+            orders=Order.objects.filter(user=user)
         except TypeError:
             return redirect(reverse('store:home'))
 
@@ -142,7 +145,7 @@ class ProfileView(View):
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
-                        }
+                        'orders': orders}
 
         return render(request, 'store/profile.html', context_dict)
       
@@ -190,7 +193,6 @@ class RemoveCartView(View):
     def get(self, request):
         product_id = request.GET['product_id']
         user_id = request.GET['user']
-        print("Hello world!")
         try:
             product = Product.objects.get(id=int(product_id))
             user = User.objects.get(id=int(user_id))
@@ -225,13 +227,17 @@ class CartView(View):
         try:
             (user, user_profile, form) = self.get_user_details(username)
             cart_list = Cart.objects.filter(user=user)
+            total_cost = 0
+            for item in cart_list:
+                total_cost += item.product.price
         except TypeError:
             return redirect(reverse('store:home'))
 
         context_dict = {'user_profile': user_profile,
                         'selected_user': user,
                         'form': form,
-                        'cart': cart_list}
+                        'cart': cart_list,
+                        'total': total_cost}
 
         return render(request, 'store/cart.html', context_dict)
 
@@ -256,3 +262,27 @@ class CartView(View):
                         'cart': cart_list}
 
         return render(request, 'store/cart.html', context_dict)
+
+class OrderCartView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        user_id = request.GET['user']
+        try:
+            user = User.objects.get(id=int(user_id))
+        except Product.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError:
+            return HttpResponse(-1)
+
+        try:
+            cart_list = Cart.objects.filter(user=user)
+            for item in cart_list:
+                order = Order.objects.get_or_create(uid=uuid.uuid4(), user=item.user, product=item.product)[0]
+                order.quantity += item.quantity
+                order.arrival_time = '2025-01-01 12:00:00'
+                order.save()
+                item.delete()
+            return redirect(reverse('store:home'))
+        except Exception as e:
+            print(e)
+            return HttpResponse(-1)

@@ -7,6 +7,8 @@
 
 {% block body_block %} 
     <div>
+
+
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -44,6 +46,23 @@
                     <strong>There are no items present.</strong>
                     {% endif %}
                     </p>
+                </div>
+                <strong>Total Cost: {{ total }}</strong>
+                <div>
+                </br>
+                    <strong id="Order"></strong>
+                    {% if user.is_authenticated %}
+                    <button id="order_btn"
+                            data-user="{{ user.id }}"
+                            class="btn btn-primary btn-sm"
+                            type="button">
+                        <span data-feather="package"></span>
+                        Place Order
+                        </button>
+                    {% else %} 
+                        Please login/register to view cart
+                    {% endif %}
+                </br>
                 </div>
             </div>
         </div>
