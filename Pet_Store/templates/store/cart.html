@@ -20,7 +20,6 @@
               <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Product </th>
               <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Price </th>
               <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Quantity </th>
-              <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Subtotal </th>
             </tr>
           </thead>
           <tbody class="u-table-body">
@@ -202,10 +201,27 @@
           class="u-file-icon u-icon"><img src="images/271220.png" alt=""></span>&nbsp;Continue Shopping
       </a>
       <p class="u-text u-text-default u-text-4">Total: $250.00</p>
-      <a href="https://nicepage.com/c/nature-html-templates"
-        class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-3">Place Order</a>
+
+      <div>
+      </br>
+          <strong id="Order"></strong>
+          {% if user.is_authenticated %}
+          <button id="order_btn"
+                  data-user="{{ user.id }}"
+                  class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-3"
+                  type="button">
+              Place Order
+              </button>
+          {% else %} 
+              Please login/register to view cart
+          {% endif %}
+      </br>
+      </div>
     </div>
   </section>
+
+
+  OLD CODE TO REFACTOR
     <div>
         <div class="col">
             <div class="card">
