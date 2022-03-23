@@ -43,13 +43,12 @@ class Product(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
     address = models.CharField(max_length=255)
     postcode = models.CharField(max_length=16)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

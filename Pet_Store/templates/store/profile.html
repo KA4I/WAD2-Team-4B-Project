@@ -3,175 +3,188 @@
 {% load crispy_forms_tags %}
 
 {% block title_block %}
-    Profile for {{ selected_user.username }}
+Profile for {{ selected_user.username }}
 {% endblock %}
 {% block og_title %}Profile{% endblock %}
-{% block CSS_block %}<link rel="stylesheet" href={% static 'css/Profile.css' %} media="screen">{% endblock %}
+{% block CSS_block %}
+<link rel="stylesheet" href={% static 'css/Profile.css' %} media="screen">{% endblock %}
 
 {% block body_block %}
 <section
-class="u-align-center-lg u-align-center-md u-align-center-xl u-align-left-sm u-align-left-xs u-clearfix u-section-1"
-id="carousel_c951">
-<div class="u-clearfix u-sheet u-sheet-1">
-  <h1 class="u-text u-text-1">Profile</h1>
-  <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-    <div class="u-layout">
-      <div class="u-layout-row">
-        <div class="u-container-style u-layout-cell u-size-24 u-size-60-md u-layout-cell-1">
-          <div class="u-container-layout u-container-layout-1">
-            <h4 class="u-text u-text-2">Your Orders</h4>
-            <div class="u-expanded-width-xs u-table u-table-responsive u-table-1">
-              <table class="u-table-entity">
-                <colgroup>
-                  <col width="33.17%">
-                  <col width="33.42%">
-                  <col width="33.42%">
-                </colgroup>
-                <thead class="u-table-header u-table-header-1">
-                  <tr style="height: 48px;">
-                    <th class="u-table-cell">Column 1 </th>
-                    <th class="u-table-cell">Column 2 </th>
-                    <th class="u-table-cell">Column 3 </th>
-                  </tr>
-                </thead>
-                <tbody class="u-table-body">
-                  <tr style="height: 77px;">
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">Row 1
-                    </td>
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                      Description</td>
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                      Description</td>
-                  </tr>
-                  <tr style="height: 78px;">
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">Row 2
-                    </td>
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                      Description</td>
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                      Description</td>
-                  </tr>
-                  <tr style="height: 78px;">
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">Row 3
-                    </td>
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                      Description</td>
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                      Description</td>
-                  </tr>
-                  <tr style="height: 78px;">
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">Row 4
-                    </td>
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                      Description</td>
-                    <td class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                      Description</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div
-          class="u-align-center-md u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-16-xl u-size-17-lg u-size-17-sm u-size-17-xs u-size-60-md u-layout-cell-2">
-          <div class="u-container-layout u-valign-top u-container-layout-2">
-            <div alt="" class="u-image u-image-circle u-image-1" data-image-width="1280" data-image-height="1280">
-            </div>
-          </div>
-        </div>
-        <div
-          class="u-container-style u-layout-cell u-size-19-lg u-size-19-sm u-size-19-xs u-size-20-xl u-size-60-md u-layout-cell-3">
-          <div class="u-container-layout u-container-layout-3">
-            <h4 class="u-text u-text-3">Details</h4>
-            <div class="u-form u-form-1">
-              <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
-                source="custom" name="form" style="padding: 10px;">
-                <div class="u-form-email u-form-group">
-                  <label for="email-df89" class="u-label">Address</label>
-                  <input type="email" placeholder="Enter address" id="email-df89" name="address"
-                    class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
-                    required="required">
+    class="u-align-center-lg u-align-center-md u-align-center-xl u-align-left-sm u-align-left-xs u-clearfix u-section-1"
+    id="carousel_c951">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-1">Profile for {{ selected_user.username }}</h1>
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-container-style u-layout-cell u-size-24 u-size-60-md u-layout-cell-1">
+                        <div class="u-container-layout u-container-layout-1">
+                            <h4 class="u-text u-text-2">Your Orders</h4>
+                            <div class="u-expanded-width-xs u-table u-table-responsive u-table-1">
+                                <table class="u-table-entity">
+                                    <colgroup>
+                                        <col width="33.17%">
+                                        <col width="33.42%">
+                                        <col width="33.42%">
+                                    </colgroup>
+                                    <thead class="u-table-header u-table-header-1">
+                                        <tr style="height: 48px;">
+                                            <th class="u-table-cell">Column 1 </th>
+                                            <th class="u-table-cell">Column 2 </th>
+                                            <th class="u-table-cell">Column 3 </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="u-table-body">
+                                        <tr style="height: 77px;">
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Row 1
+                                            </td>
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Description</td>
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Description</td>
+                                        </tr>
+                                        <tr style="height: 78px;">
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Row 2
+                                            </td>
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Description</td>
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Description</td>
+                                        </tr>
+                                        <tr style="height: 78px;">
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Row 3
+                                            </td>
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Description</td>
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Description</td>
+                                        </tr>
+                                        <tr style="height: 78px;">
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Row 4
+                                            </td>
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Description</td>
+                                            <td
+                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                Description</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="u-align-center-md u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-16-xl u-size-17-lg u-size-17-sm u-size-17-xs u-size-60-md u-layout-cell-2">
+                        <div class="u-container-layout u-valign-top u-container-layout-2">
+                            <img alt="" class="u-image u-image-circle u-image-1"
+                                src="{{ MEDIA_URL }}{{ user_profile.picture }}" data-image-width="1280"
+                                data-image-height="1280">
+                        </div>
+                    </div>
+                    <div
+                        class="u-container-style u-layout-cell u-size-19-lg u-size-19-sm u-size-19-xs u-size-20-xl u-size-60-md u-layout-cell-3">
+                        <div class="u-container-layout u-container-layout-3">
+                            <h4 class="u-text u-text-3">Details</h4>
+                            <div class="u-form u-form-1">
+                                <form action="#" method="POST" enctype="multipart/form-data"
+                                    class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
+                                    name="form" style="padding: 10px;">
+                                    {% csrf_token %}
+                                    <div class="u-form-address u-form-group">
+                                        <label for="id_address" class="u-label">Address</label>
+                                        <input type="text" placeholder="{{user_profile.address}}" id="id_address"
+                                            name="address"
+                                            class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
+                                            required="required">
+                                    </div>
+                                    <div class="u-form-group u-form-name">
+                                        <label for="id_postcode" class="u-label">Post Code</label>
+                                        <input type="text" placeholder="{{user_profile.postcode}}" id="id_postcode"
+                                            name="postcode"
+                                            class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
+                                            required="">
+                                    </div>
+                                    <div class="u-align-left u-form-group u-form-submit">
+                                        <label id="label-for-picture" for="id_picture" class=" u-btn ">Choose Picture - Picture</label>
+                                        <input enctype="multipart/form-data" hidden type="file" name="picture" id="id_picture"/>
+                                    </div>
+                                    <div class="u-align-left u-form-group u-form-submit">
+                                        <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
+                                        <input enctype="multipart/form-data" type="submit" value="Update" class="u-form-control-hidden">
+                                    </div>
+                                    <div class="u-form-send-message u-form-send-success">Thank you! Your message has
+                                        been sent.</div>
+                                    <div class="u-form-send-error u-form-send-message"> Unable to send your message.
+                                        Please fix errors
+                                        then try again. </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="u-form-group u-form-name">
-                  <label for="name-df89" class="u-label">Post Code</label>
-                  <input type="text" placeholder="Enter your post code" id="name-df89" name="post code"
-                    class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
-                    required="">
-                </div>
-                <div class="u-align-left u-form-group u-form-submit">
-                  <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
-                  <input type="submit" value="submit" class="u-form-control-hidden">
-                </div>
-                <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-                <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors
-                  then try again. </div>
-                <input type="hidden" value="" name="recaptchaResponse">
-              </form>
             </div>
-            <p class="u-text u-text-4">Picture</p>
-            <a href="https://nicepage.com/website-builder" class="u-btn u-button-style u-btn-2">Choose Image</a>
-            <p class="u-text u-text-5">Choose Image</p>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
 </section>
-    <div class="jumbotron p-4">
-        <div class="container">
-            <h1 class="jumbotron-heading">{{ selected_user.username }}'s Profile</h1>
-        </div>
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">{{ selected_user.username }}'s Profile</h1>
     </div>
+</div>
 </div>
 <div class="container">
     <div class="row">
-        <img src="{{ MEDIA_URL }}{{ user_profile.picture }}"
-            width="300"
-            height="300"
-            alt="{{ selected_user.username }}'s profile image" />
-        <br />
-        <div>
-            {% if selected_user == user %}
-            <form method="post" action="." enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form|crispy }}
-
-                <input class="button" type="submit" value="Update" />
-            </form>
-            {% else %}
-            <p>
-                <strong>This is not you!</strong>
-            </p>
-            {% endif %}
-        </div>
         <div class="col">
             <div class="card">
                 <div class="card-body">
                     <h2>Your Orders</h2>
                     <p class="card-text">
-                    <strong id="Removed"></strong>
-                    {% if orders %}
-                    <ul class="list-group">
-                        {% for item in orders %}
-                        </br>
+                        <strong id="Removed"></strong>
+                        {% if orders %}
+                        <ul class="list-group">
+                            {% for item in orders %}
+                            </br>
                             <li class="list-group-item">
-                            Order #{{ item.uid }}
-                            <strong><a class="nav-link" href="{% url 'store:show_product' item.product.slug %}">
-                            <span data-feather="archive"></span> {{ item.product.name }}</a></strong>
-                            Quantity: {{ item.quantity }} </br>
-                            Arriving: {{ item.arrival_time }}
+                                Order #{{ item.uid }}
+                                <strong><a class="nav-link" href="{% url 'store:show_product' item.product.slug %}">
+                                        <span data-feather="archive"></span> {{ item.product.name }}</a></strong>
+                                Quantity: {{ item.quantity }} </br>
+                                Arriving: {{ item.arrival_time }}
                             </li>
                             </br>
-                        {% endfor %}
-                    </ul>
-                    {% else %}
-                    <strong>There are no items present.</strong>
-                    {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <strong>There are no items present.</strong>
+                        {% endif %}
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    const selectElement = document.querySelector('#id_picture');
+
+    selectElement.addEventListener('change', (event) => {
+    const result = document.querySelector('#label-for-picture');
+    result.textContent = `Choose Picture -  ${event.target.value.replace(/^.*[\\\/]/, '')}`;
+});
+</script>
 {% endblock %}
