@@ -1,0 +1,75 @@
+ .u-section-1 {
+  background-image: linear-gradient(45deg, #0c8558, #1d5c40);
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 750px;
+}
+
+.u-section-1 .u-icon-1 {
+  width: 64px;
+  height: 64px;
+  margin: 127px auto 0;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 2.5rem;
+  letter-spacing: 0px;
+  text-transform: none;
+  font-weight: 300;
+  width: 295px;
+  margin: 40px auto 0;
+}
+
+.u-section-1 .u-form-1 {
+  height: 293px;
+  width: 570px;
+  margin: 26px auto 0;
+}
+
+.u-section-1 .u-label-1 {
+  font-size: 1rem;
+  letter-spacing: 0px;
+  text-transform: none;
+}
+
+.u-section-1 .u-label-2 {
+  font-size: 1rem;
+  letter-spacing: 0px;
+  text-transform: none;
+}
+
+.u-section-1 .u-btn-1 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-style: none;
+  text-transform: uppercase;
+  background-image: none;
+  margin-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+  display: block;
+}
+
+.u-section-1 .u-btn-2 {
+  border-style: none none solid;
+  font-size: 1.125rem;
+  margin: 20px auto 60px;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-form-1 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    font-size: 1.5rem;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 340px;
+  }
+}
