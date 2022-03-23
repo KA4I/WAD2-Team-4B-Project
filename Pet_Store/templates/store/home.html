@@ -13,8 +13,8 @@
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-1">
               <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-1">
                 <a class="u-active-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-btn-1"
-                  href="https://localhost/category"><span class="u-file-icon u-icon u-icon-1"><img
-                      src="{% static 'images/6164302.png' %}" alt=""></span>&nbsp;​Cat
+                  href="http://127.0.0.1:8000/store/category/toys/"><span class="u-file-icon u-icon u-icon-1"><img
+                      src="{% static 'images/toyCategory.png' %}" alt=""></span>&nbsp;Toys
                 </a>
               </p>
             </div>
@@ -23,16 +23,19 @@
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
               <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-2">
                 <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-text-body-alt-color u-btn-2"
-                  href="https://localhost/category2"><span class="u-file-icon u-icon u-icon-2"><img
-                      src="{% static 'images/2965100.png' %}" alt=""></span>&nbsp;<span class="u-text-body-color">Dog</span>
+                  href="http://127.0.0.1:8000/store/category/animals/"><span class="u-file-icon u-icon u-icon-2"><img
+                      src="{% static 'images/2965100.png' %}" alt=""></span>&nbsp;<span class="u-text-body-color">Pets</span>
                 </a>
               </p>
             </div>
           </div>
-          <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
-            <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
-              <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-3"><span
-                  class="u-file-icon u-icon u-icon-3"><img src="{% static 'images/6164302.png' %}" alt=""></span>&nbsp;​Cat
+           <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
+             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
+               <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-2">
+                 <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-text-body-alt-color u-btn-2"
+                   href="http://127.0.0.1:8000/store/category/food/"><span class="u-file-icon u-icon u-icon-2"><img
+                       src="{% static 'images/foodCategory.png' %}" alt=""></span>&nbsp;<span class="u-text-body-color">Pet Food</span>
+                       </a>
               </p>
             </div>
           </div>
@@ -43,8 +46,7 @@
   <section class="u-align-center u-clearfix u-section-2" id="sec-cfc7">
     <div class="u-clearfix u-sheet u-sheet-1">
       <h2 class="u-text u-text-1">Popular Products</h2>
-      <p class="u-text u-text-default u-text-2">Sample text. Click to select the text box. Click again or double click
-        to start editing the text.</p>
+      <p class="u-text u-text-default u-text-2">Our Google Customer Reviews: 5.0 ★★★★★</p>
       <!--products-->
       <!--products_options_json-->
       <!--{"type":"products-category","source":"Dog Products","tags":"","count":""}-->
@@ -90,8 +92,10 @@
               </div>
               <div class="u-product-control u-product-desc u-text u-text-4">
                  <!--product_content_content-->
-                 <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
-                   suscipit ultrices.</p>
+                 <p class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
+                   <!--product_regular_price_content-->{{ product.description }}
+                 <!--/product_content_content-->
+                 </p>
                  <!--/product_content_content-->
                </div>
                <!--/product_content-->
