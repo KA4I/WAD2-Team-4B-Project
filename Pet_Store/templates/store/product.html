@@ -41,7 +41,7 @@
                   <img class="u-back-image u-expanded" 
                   {% with 'images/'|add:product.name|add:'.png' as image %}
                     <img src="{% static image %}"/>
-                {% endwith %}>
+                {% endwith %}
                 </div>
                 <div class="u-over-slide u-over-slide-1">
                   <h3 class="u-gallery-heading">Sample Title</h3>
@@ -52,7 +52,10 @@
               <!--product_gallery_item-->
               <div class="u-carousel-item u-gallery-item u-carousel-item-2">
                 <div class="u-back-slide">
-                  <img class="u-back-image u-expanded" src="images/5.svg">
+                  <img class="u-back-image u-expanded"
+                  {% with 'images/'|add:product.name|add:'.png' as image %}
+                    <img src="{% static image %}"/>
+                {% endwith %}
                 </div>
                 <div class="u-over-slide u-over-slide-2">
                   <h3 class="u-gallery-heading">{{ product.name }}</h3>
@@ -122,48 +125,69 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
             <!--product_content_content-->
             <p>{{ product.description }}</p>
             <!--/product_content_content-->
-          </div>
           <!--/product_content-->
           <!--product_button-->
           <!--options_json-->
-          <!--{"clickType":"add-to-cart","content":""}-->
+          <div>
+            {% if user.is_authenticated %}
+            <button id="add_btn"
+                    data-productid="{{ product.uid }}"
+                    data-user="{{ user.id }}"
+                    class="u-active-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-hover-black u-none u-product-control u-text-active-white u-text-black u-text-hover-white u-btn-1"
+                    type="button">
+                    <strong id="add_to_cart">Add to Cart</strong>
+                </button>
+            {% else %} 
+            <div>
+                Please login/register to order this product
+            </div>
+            {% endif %}
+            </div>
+            </div>
           <!--/options_json-->
-          <a href="#"
-            class="u-active-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-hover-black u-none u-product-control u-text-active-white u-text-black u-text-hover-white u-btn-1">
-            <!--product_button_content-->Add to Cart
-            <!--/product_button_content--></a>
-            <a href="#"
-            class="u-active-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-hover-black u-none u-product-control u-text-active-white u-text-black u-text-hover-white u-btn-1">
-            <!--product_button_content-->Like
-            <!--/product_button_content--></a>
+            <!--product_button_content-->
+            <!--/product_button_content-->
+            <!--product_button_content-->
+            <div>
+                {% if user.is_authenticated %}
+                <button id="like_btn"
+                        data-productid="{{ product.uid }}"
+                        class="u-active-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-hover-black u-none u-product-control u-text-active-white u-text-black u-text-hover-white u-btn-1"
+                        type="button">
+                    Like Product
+                    </button>
+                {% endif %}
+            </div>
+            <!--/product_button_content-->
             
           <!--/product_button-->
         </div>
-        <h2>The product has {{product.likes}} likes</h2>
       </div>
       <!--/product_item-->
       <!--/product-->
+      <h2>This product has <strong id="like_count">{{product.likes}}</strong> likes</h2>
     </div>
   </section>
+  <!--
     <div>
         {% if product %} 
         <h1>{{ product.name }}</h1>
             <h2>Description</h2>
             {{ product.description }}
             <h2>Price</h2>
-            £{{ product.price }}
+            £{{ product.price }} -->
             <!--product_item-->
-            <div class="u-align-center u-container-style u-products-item u-repeater-item">
-                <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-1">
-                <!--product_image-->
-                <img height="60" width="60" alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1" 
+            <!-- <div class="u-align-center u-container-style u-products-item u-repeater-item">
+                <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-1"> -->
+                <!--product_image--> 
+                <!-- <img height="60" width="60" alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1" 
                 {% with 'images/'|add:product.name|add:'.png' as image %}
                 <img src="{% static image %}"/>
                 {% endwith %}
                 </div>
-            </div>
+            </div> -->
               <!--/product_image-->
-        {% else %} 
+        <!-- {% else %} 
         <strong>No production information avaliable</strong>
         {% endif %}
     </div>
@@ -196,6 +220,6 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
         Like Product
         </button>
     {% endif %}
-</div>
+</div> -->
     
 {% endblock %}}

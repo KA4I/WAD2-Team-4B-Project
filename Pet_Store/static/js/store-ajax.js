@@ -6,7 +6,7 @@ $(document).ready(function() {
         $.get('/store/like_product/',
             {'product_id': productIdVar},
             function(data) {
-                $('#like_count').html(data);
+                $('#like_count').html("This product has " + data + " likes");
                 $('#like_btn').hide();
             })
     });
@@ -20,7 +20,6 @@ $(document).ready(function() {
             {'product_id': productIdVar, 'user': userIdVar},
             function(data) {
                 $('#add_to_cart').html("Added!");
-                $('#add_btn').hide();
             })
     });
 
