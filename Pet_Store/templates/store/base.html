@@ -92,11 +92,11 @@
                         {% else %} 
                             <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="{% url 'store:login' %}" style="padding: 10px 0px;">Login</a>
+                                href="{% url 'auth_login' %}" style="padding: 10px 0px;">Login</a>
                             </li>
                             <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="{% url 'store:register' %}" style="padding: 10px 0px;">Register</a>
+                                href="{% url 'registration_register' %}" style="padding: 10px 0px;">Register</a>
                             </li>
                         {% endif %} 
                         
@@ -125,9 +125,9 @@
                                     </li>
                                 {% else %} 
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                        href="{% url 'store:register' %}">Register</a>
+                                        href="{% url 'registration_register' %}">Register</a>
                                     </li>
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'store:login' %}">Login</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'auth_login' %}">Login</a>
                                     </li>
                                 {% endif %} 
                             </ul>
