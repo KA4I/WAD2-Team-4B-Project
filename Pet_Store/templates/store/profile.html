@@ -22,70 +22,41 @@ Profile for {{ selected_user.username }}
                         <div class="u-container-layout u-container-layout-1">
                             <h4 class="u-text u-text-2">Your Orders</h4>
                             <div class="u-expanded-width-xs u-table u-table-responsive u-table-1">
-                                <table class="u-table-entity">
-                                    <colgroup>
-                                        <col width="33.17%">
-                                        <col width="33.42%">
-                                        <col width="33.42%">
-                                    </colgroup>
-                                    <thead class="u-table-header u-table-header-1">
-                                        <tr style="height: 48px;">
-                                            <th class="u-table-cell">Column 1 </th>
-                                            <th class="u-table-cell">Column 2 </th>
-                                            <th class="u-table-cell">Column 3 </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="u-table-body">
-                                        <tr style="height: 77px;">
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Row 1
-                                            </td>
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Description</td>
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Description</td>
-                                        </tr>
-                                        <tr style="height: 78px;">
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Row 2
-                                            </td>
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Description</td>
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Description</td>
-                                        </tr>
-                                        <tr style="height: 78px;">
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Row 3
-                                            </td>
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Description</td>
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Description</td>
-                                        </tr>
-                                        <tr style="height: 78px;">
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Row 4
-                                            </td>
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Description</td>
-                                            <td
-                                                class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
-                                                Description</td>
-                                        </tr>
-                                    </tbody>
+                                {% if orders %}
+                                    <table class="u-table-entity">
+                                        <colgroup>
+                                            <col width="33.17%">
+                                            <col width="33.42%">
+                                            <col width="33.42%">
+                                        </colgroup>
+                                        <thead class="u-table-header u-table-header-1">
+                                            <tr style="height: 48px;">
+                                                <th class="u-table-cell">Order # </th>
+                                                <th class="u-table-cell">Quantity </th>
+                                                <th class="u-table-cell">Arriving </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="u-table-body">
+                                            {% for item in orders %}
+                                            <tr style="height: 77px;">
+                                                <td 
+                                                    href="{% url 'store:show_product' item.product.slug %}"
+                                                    class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                    Order #{{ item.uid }} {{ item.product.name }}
+                                                </td>
+                                                <td
+                                                    class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                    {{ item.quantity }}</td>
+                                                <td
+                                                    class="u-border-2 u-border-grey-30 u-border-no-left u-border-no-right u-table-cell">
+                                                    {{ item.arrival_time }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
                                 </table>
+                                {% else %}
+                                    <strong>There are no items present.</strong>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -121,12 +92,16 @@ Profile for {{ selected_user.username }}
                                             required="">
                                     </div>
                                     <div class="u-align-left u-form-group u-form-submit">
-                                        <label id="label-for-picture" for="id_picture" class=" u-btn ">Choose Picture - Picture</label>
-                                        <input enctype="multipart/form-data" hidden type="file" name="picture" id="id_picture"/>
+                                        <label id="label-for-picture" for="id_picture" class=" u-btn ">Choose Picture -
+                                            Picture</label>
+                                        <input enctype="multipart/form-data" hidden type="file" name="picture"
+                                            id="id_picture" />
                                     </div>
                                     <div class="u-align-left u-form-group u-form-submit">
-                                        <a onclick="document.getElementById('Update_form').submit();" href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
-                                        <input enctype="multipart/form-data" type="submit" value="Update" class="u-form-control-hidden">
+                                        <a onclick="document.getElementById('Update_form').submit();" href="#"
+                                            class="u-btn u-btn-submit u-button-style">Submit</a>
+                                        <input enctype="multipart/form-data" type="submit" value="Update"
+                                            class="u-form-control-hidden">
                                     </div>
                                     <div class="u-form-send-message u-form-send-success">Thank you! Your message has
                                         been sent.</div>
@@ -183,8 +158,8 @@ Profile for {{ selected_user.username }}
     const selectElement = document.querySelector('#id_picture');
 
     selectElement.addEventListener('change', (event) => {
-    const result = document.querySelector('#label-for-picture');
-    result.textContent = `Choose Picture -  ${event.target.value.replace(/^.*[\\\/]/, '')}`;
-});
+        const result = document.querySelector('#label-for-picture');
+        result.textContent = `Choose Picture -  ${event.target.value.replace(/^.*[\\\/]/, '')}`;
+    });
 </script>
 {% endblock %}
