@@ -32,6 +32,7 @@ class Product(models.Model):
     likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
+    image = models.ImageField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

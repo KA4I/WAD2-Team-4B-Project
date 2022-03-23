@@ -17,7 +17,7 @@ import uuid
 
 def home(request):
     category_list = Category.objects.all()
-    product_list = Product.objects.order_by('-likes')[:5]
+    product_list = Product.objects.order_by('-likes')[:6]
 
     context_dict = {}
     context_dict['boldmessage'] = 'Enjoy your visit!'

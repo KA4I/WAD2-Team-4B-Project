@@ -42,7 +42,7 @@
   </section>
   <section class="u-align-center u-clearfix u-section-2" id="sec-cfc7">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <h2 class="u-text u-text-1">Sample Headline</h2>
+      <h2 class="u-text u-text-1">Popular Products</h2>
       <p class="u-text u-text-default u-text-2">Sample text. Click to select the text box. Click again or double click
         to start editing the text.</p>
       <!--products-->
@@ -51,6 +51,7 @@
       <!--/products_options_json-->
       <div class="u-expanded-width u-pagination-center u-products u-products-1">
         <div class="u-repeater u-repeater-1">
+          {% for product in products %}
           <!--product_item-->
           <div class="u-align-center u-container-style u-products-item u-repeater-item">
             <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-1">
@@ -62,8 +63,8 @@
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
                   <!--product_title-->
                   <h4 class="u-product-control u-text u-text-3">
-                    <a class="u-product-title-link" href="#">
-                      <!--product_title_content-->Product 1 Title
+                    <a class="u-product-title-link" href="/store/product/{{ product.slug }}">
+                      <!--product_title_content-->{{ product.name }}
                       <!--/product_title_content--></a>
                   </h4>
                   <!--/product_title-->
@@ -78,7 +79,7 @@
                       <!--/product_old_price-->
                       <!--product_regular_price-->
                       <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
-                        <!--product_regular_price_content-->$17.00
+                        <!--product_regular_price_content-->${{ product.price }}
                         <!--/product_regular_price_content-->
                       </div>
                       <!--/product_regular_price-->
@@ -87,6 +88,11 @@
                   <!--/product_price-->
                 </div>
               </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
               <!--product_content-->
               <div class="u-product-control u-product-desc u-text u-text-4">
                 <!--product_content_content-->
@@ -97,240 +103,6 @@
               <!--/product_content-->
             </div>
           </div>
-          <!--/product_item-->
-          <!--product_item-->
-          <div class="u-align-center u-container-style u-products-item u-repeater-item">
-            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-3">
-              <!--product_image-->
-              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-2"
-                src="{% static 'images/6.svg' %}">
-              <!--/product_image-->
-              <div class="u-align-center u-container-style u-grey-10 u-group u-group-2">
-                <div class="u-container-layout u-valign-middle u-container-layout-4">
-                  <!--product_title-->
-                  <h4 class="u-product-control u-text u-text-default u-text-5">
-                    <a class="u-product-title-link" href="#">
-                      <!--product_title_content-->Product 2 Title
-                      <!--/product_title_content--></a>
-                  </h4>
-                  <!--/product_title-->
-                  <!--product_price-->
-                  <div class="u-product-control u-product-price u-product-price-2">
-                    <div class="u-price-wrapper u-spacing-10">
-                      <!--product_old_price-->
-                      <div class="u-hide-price u-old-price">
-                        <!--product_old_price_content-->$300.00
-                        <!--/product_old_price_content-->
-                      </div>
-                      <!--/product_old_price-->
-                      <!--product_regular_price-->
-                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
-                        <!--product_regular_price_content-->$245.00
-                        <!--/product_regular_price_content-->
-                      </div>
-                      <!--/product_regular_price-->
-                    </div>
-                  </div>
-                  <!--/product_price-->
-                </div>
-              </div>
-              <!--product_content-->
-              <div class="u-product-control u-product-desc u-text u-text-6">
-                <!--product_content_content-->
-                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
-                  suscipit ultrices.</p>
-                <!--/product_content_content-->
-              </div>
-              <!--/product_content-->
-            </div>
-          </div>
-          <!--/product_item-->
-          <!--product_item-->
-          <div class="u-align-center u-container-style u-products-item u-repeater-item">
-            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-5">
-              <!--product_image-->
-              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-3"
-                src="{% static 'images/7.svg' %}">
-              <!--/product_image-->
-              <div class="u-align-center u-container-style u-grey-10 u-group u-group-3">
-                <div class="u-container-layout u-valign-middle u-container-layout-6">
-                  <!--product_title-->
-                  <h4 class="u-product-control u-text u-text-default u-text-7">
-                    <a class="u-product-title-link" href="#">
-                      <!--product_title_content-->Product 3 Title
-                      <!--/product_title_content--></a>
-                  </h4>
-                  <!--/product_title-->
-                  <!--product_price-->
-                  <div class="u-product-control u-product-price u-product-price-3">
-                    <div class="u-price-wrapper u-spacing-10">
-                      <!--product_old_price-->
-                      <div class="u-hide-price u-old-price">
-                        <!--product_old_price_content-->$25.00
-                        <!--/product_old_price_content-->
-                      </div>
-                      <!--/product_old_price-->
-                      <!--product_regular_price-->
-                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
-                        <!--product_regular_price_content-->$19.00
-                        <!--/product_regular_price_content-->
-                      </div>
-                      <!--/product_regular_price-->
-                    </div>
-                  </div>
-                  <!--/product_price-->
-                </div>
-              </div>
-              <!--product_content-->
-              <div class="u-product-control u-product-desc u-text u-text-8">
-                <!--product_content_content-->
-                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
-                  suscipit ultrices.</p>
-                <!--/product_content_content-->
-              </div>
-              <!--/product_content-->
-            </div>
-          </div>
-          <!--/product_item-->
-          <!--product_item-->
-          <div class="u-align-center u-container-style u-products-item u-repeater-item">
-            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-7">
-              <!--product_image-->
-              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-4"
-                src="{% static 'images/8.svg' %}">
-              <!--/product_image-->
-              <div class="u-align-center u-container-style u-grey-10 u-group u-group-4">
-                <div class="u-container-layout u-valign-middle u-container-layout-8">
-                  <!--product_title-->
-                  <h4 class="u-product-control u-text u-text-default u-text-9">
-                    <a class="u-product-title-link" href="#">
-                      <!--product_title_content-->Product 4 Title
-                      <!--/product_title_content--></a>
-                  </h4>
-                  <!--/product_title-->
-                  <!--product_price-->
-                  <div class="u-product-control u-product-price u-product-price-4">
-                    <div class="u-price-wrapper u-spacing-10">
-                      <!--product_old_price-->
-                      <div class="u-hide-price u-old-price">
-                        <!--product_old_price_content-->$25.00
-                        <!--/product_old_price_content-->
-                      </div>
-                      <!--/product_old_price-->
-                      <!--product_regular_price-->
-                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
-                        <!--product_regular_price_content-->$20.00
-                        <!--/product_regular_price_content-->
-                      </div>
-                      <!--/product_regular_price-->
-                    </div>
-                  </div>
-                  <!--/product_price-->
-                </div>
-              </div>
-              <!--product_content-->
-              <div class="u-product-control u-product-desc u-text u-text-10">
-                <!--product_content_content-->
-                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
-                  suscipit ultrices.</p>
-                <!--/product_content_content-->
-              </div>
-              <!--/product_content-->
-            </div>
-          </div>
-          <!--/product_item-->
-          <!--product_item-->
-          <div class="u-align-center u-container-style u-products-item u-repeater-item">
-            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-9">
-              <!--product_image-->
-              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-5"
-                src="{% static 'images/9.svg' %}">
-              <!--/product_image-->
-              <div class="u-align-center u-container-style u-grey-10 u-group u-group-5">
-                <div class="u-container-layout u-valign-middle u-container-layout-10">
-                  <!--product_title-->
-                  <h4 class="u-product-control u-text u-text-default u-text-11">
-                    <a class="u-product-title-link" href="#">
-                      <!--product_title_content-->Product 5 Title
-                      <!--/product_title_content--></a>
-                  </h4>
-                  <!--/product_title-->
-                  <!--product_price-->
-                  <div class="u-product-control u-product-price u-product-price-5">
-                    <div class="u-price-wrapper u-spacing-10">
-                      <!--product_old_price-->
-                      <div class="u-hide-price u-old-price">
-                        <!--product_old_price_content-->$10.00
-                        <!--/product_old_price_content-->
-                      </div>
-                      <!--/product_old_price-->
-                      <!--product_regular_price-->
-                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
-                        <!--product_regular_price_content-->$7.00
-                        <!--/product_regular_price_content-->
-                      </div>
-                      <!--/product_regular_price-->
-                    </div>
-                  </div>
-                  <!--/product_price-->
-                </div>
-              </div>
-              <!--product_content-->
-              <div class="u-product-control u-product-desc u-text u-text-12">
-                <!--product_content_content-->
-                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
-                  suscipit ultrices.</p>
-                <!--/product_content_content-->
-              </div>
-              <!--/product_content-->
-            </div>
-          </div>
-          <!--/product_item-->
-          <!--product_item-->
-          <div class="u-align-center u-container-style u-products-item u-repeater-item">
-            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-11">
-              <!--product_image-->
-              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-6"
-                src="{% static 'images/10.svg' %}">
-              <!--/product_image-->
-              <div class="u-align-center u-container-style u-grey-10 u-group u-group-6">
-                <div class="u-container-layout u-valign-middle u-container-layout-12">
-                  <!--product_title-->
-                  <h4 class="u-product-control u-text u-text-default u-text-13">
-                    <a class="u-product-title-link" href="#">
-                      <!--product_title_content-->Product 6 Title
-                      <!--/product_title_content--></a>
-                  </h4>
-                  <!--/product_title-->
-                  <!--product_price-->
-                  <div class="u-product-control u-product-price u-product-price-6">
-                    <div class="u-price-wrapper u-spacing-10">
-                      <!--product_old_price-->
-                      <div class="u-hide-price u-old-price">
-                        <!--product_old_price_content-->$175.00
-                        <!--/product_old_price_content-->
-                      </div>
-                      <!--/product_old_price-->
-                      <!--product_regular_price-->
-                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
-                        <!--product_regular_price_content-->$150.00
-                        <!--/product_regular_price_content-->
-                      </div>
-                      <!--/product_regular_price-->
-                    </div>
-                  </div>
-                  <!--/product_price-->
-                </div>
-              </div>
-              <!--product_content-->
-              <div class="u-product-control u-product-desc u-text u-text-14">
-                <!--product_content_content-->
-                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
-                  suscipit ultrices.</p>
-                <!--/product_content_content-->
-              </div>
-              <!--/product_content-->
-            </div>
           </div>
           <!--/product_item-->
         </div>
