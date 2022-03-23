@@ -293,3 +293,12 @@ class OrderCartView(View):
         except Exception as e:
             print(e)
             return HttpResponse(-1)
+def search(request):
+    context_dict = {}
+    context_dict['boldmessage'] = 'Enjoy your visit!'
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        if search:
+            products = Product.objects.filter(name__contains=search)
+            context_dict['products'] = products
+    return render(request, 'store/search.html', context_dict)

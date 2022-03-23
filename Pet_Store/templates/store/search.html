@@ -1,10 +1,11 @@
-{% extends 'store/base.html' %} 
-{% load staticfiles %} 
-
-{% block title_block %}Home{% endblock %}
-{% block og_title %}Home{% endblock %}
+{% extends 'store/base.html' %}
+{% load staticfiles %}
+{% block title_block %}Search{% endblock %}
+{% block og_title %}Search{% endblock %}
 {% block CSS_block %}<link rel="stylesheet" href={% static 'css/Home.css' %} media="screen">{% endblock %}
-{% block body_block %}
+
+
+ {% block body_block %}
 <section class="skrollable u-align-center u-clearfix u-section-1" id="sec-be0d" >
     <div class="u-align-left u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-expanded-width u-list u-list-1">
@@ -43,22 +44,19 @@
       </div>
     </div>
   </section>
-  <section class="u-align-center u-clearfix u-section-2" id="sec-cfc7" style="color: #EDF5E1">
+     <h2>Search Results....</h2>
+     <hr>
+    <section class="u-align-center u-clearfix u-section-2" id="sec-cfc7">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <h2 class="u-text u-text-1">Popular Products</h2>
-      <p class="u-text u-text-default u-text-2">Our Google Customer Reviews: 5.0 ★★★★★</p>
-      <!--products-->
-      <!--products_options_json-->
-      <!--{"type":"products-category","source":"Dog Products","tags":"","count":""}-->
-      <!--/products_options_json-->
-      <div class="u-expanded-width u-pagination-center u-products u-products-1">
+     {% if products %}
+         <div class="u-expanded-width u-pagination-center u-products u-products-1">
         <div class="u-repeater u-repeater-1">
           {% for product in products %}
           <!--product_item-->
           <div class="u-align-center u-container-style u-products-item u-repeater-item">
             <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-1">
               <!--product_image-->
-               <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1" 
+              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1"
               {% with 'images/'|add:product.name|add:'.png' as image %}
               <img src="{% static image %}"/>
                 {% endwith %}
@@ -94,10 +92,7 @@
               </div>
               <div class="u-product-control u-product-desc u-text u-text-4">
                  <!--product_content_content-->
-                 <p class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;" >
-                   <!--product_regular_price_content-->{{ product.description }}
-                 <!--/product_content_content-->
-                 </p>
+                 {{ product.description }}
                  <!--/product_content_content-->
                </div>
                <!--/product_content-->
@@ -106,7 +101,10 @@
           {% endfor %}
           </div>
         </div>
-
+    </div>
+         {% else %}
+         <h4>Not Found.</h4>
+         {% endif %}
         <div class="u-list-control">
           <!--products_pagination-->
           <!--products_pagination_options_json-->
@@ -140,5 +138,5 @@
       </div>
       <!--/products-->
     </div>
-  </section>
+</section>
 {% endblock %}
