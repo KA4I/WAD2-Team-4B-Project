@@ -1,14 +1,41 @@
-{% extends 'store/base.html' %} 
-{% load staticfiles %} 
+{% extends 'store/base.html' %}
+{% load staticfiles %}
 
-{% block title_block %} 
-    About
-{% endblock %} 
+{% block title_block %}About{% endblock %}
+{% block og_title %}About{% endblock %}
+{% block CSS_block %}<link rel="stylesheet" href={% static 'css/About.css' %} media="screen">{% endblock %}
 
-{% block body_block %} 
-    <h1>We are Pets R Us!</h1>
-    <div>
-        About Us! <br />
-        <strong>{{ boldmessage }}</strong><br />
+{% block body_block %}
+<section class="u-clearfix u-section-1" id="sec-71a0">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+                    <div class="u-container-style u-image u-layout-cell u-left-cell u-size-17 u-image-1" src=""
+                        data-image-width="256" data-image-height="256">
+                        <div class="u-container-layout u-container-layout-1"></div>
+                    </div>
+                    <div class="u-container-style u-image u-layout-cell u-right-cell u-size-17 u-image-2" src=""
+                        data-image-width="256" data-image-height="256">
+                        <div class="u-container-layout u-container-layout-2"></div>
+                    </div>
+                    <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-26 u-layout-cell-3"
+                        src="">
+                        <div class="u-container-layout u-valign-middle u-container-layout-3">
+                            <h2 class="u-text u-text-default u-text-1">About Us</h2>
+                            <p class="u-text u-text-2">Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Curabitur
+                                id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed
+                                efficitur dolor, et
+                                ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem
+                                odio. In
+                                ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.</p>
+                            <a href="" class="u-btn u-button-style u-btn-1">Button</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
 {% endblock %}

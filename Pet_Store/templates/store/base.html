@@ -13,7 +13,7 @@
         Pets R Us - {% block title_block %} Store {% endblock %}
     </title>
     <link rel="stylesheet" href={% static 'css/nicepage.css' %} media="screen">
-    <link rel="stylesheet" href={% static 'css/Home.css' %} media="screen">
+    {% block CSS_block %} CSS {% endblock %}
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 4.7.1, nicepage.com">
@@ -47,7 +47,7 @@
         </style>
         <div class="u-clearfix u-sheet u-valign-middle-sm u-valign-middle-xl u-sheet-1">
             <img class="u-image u-image-default u-image-1" src="{% static 'images/logo.png' %}" alt="" data-image-width="1200"
-                data-image-height="200" data-href="Home.html" data-page-id="1596118079">
+                data-image-height="200" data-href="{% url 'store:home' %}" data-page-id="1596118079">
             <nav class="u-align-right u-menu u-menu-one-level u-nav-spacing-25 u-offcanvas u-menu-1">
                 <div class="menu-collapse u-custom-font u-font-montserrat">
                     <a class="u-button-style u-custom-color u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-nav-link"
@@ -70,33 +70,33 @@
                     <ul class="u-custom-font u-font-montserrat u-nav u-spacing-30 u-unstyled u-nav-1">
                         <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="Home.html" style="padding: 10px 0px;">Home</a>
+                                href="{% url 'store:home' %}" style="padding: 10px 0px;">Home</a>
                         </li>
                         <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="About.html" style="padding: 10px 0px;">About</a>
+                                href="{% url 'store:about' %}" style="padding: 10px 0px;">About</a>
                         </li>
                         <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="Contact-Us.html" style="padding: 10px 0px;">Contact Us</a>
+                                href="{% url 'store:contact' %}" style="padding: 10px 0px;">Contact Us</a>
                         </li>
                         {% if user.is_authenticated %} 
                             <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="Profile.html" style="padding: 10px 0px;">Profile</a>
+                                href="{% url 'store:profile' user.username %}" style="padding: 10px 0px;">Profile</a>
                             </li>
                             <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="Cart.html" style="padding: 10px 0px;">Cart</a>
+                                href="{% url 'store:cart' user.username %}" style="padding: 10px 0px;">Cart</a>
                             </li>
                         {% else %} 
                             <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="Login.html" style="padding: 10px 0px;">Login</a>
+                                href="{% url 'store:login' %}" style="padding: 10px 0px;">Login</a>
                             </li>
                             <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
-                                href="Register.html" style="padding: 10px 0px;">Register</a>
+                                href="{% url 'store:register' %}" style="padding: 10px 0px;">Register</a>
                             </li>
                         {% endif %} 
                         
@@ -109,25 +109,25 @@
                         <div class="u-inner-container-layout u-sidenav-overflow">
                             <div class="u-menu-close"></div>
                             <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'store:home' %}">Home</a>
                                 </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'store:about' %}">About</a>
                                 </li>
                                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                        href="Contact-Us.html">Contact Us</a>
+                                        href="{% url 'store:contact' %}">Contact Us</a>
                                 </li>
                                 {% if user.is_authenticated %} 
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                        href="Profile.html">Profile</a>
+                                        href="{% url 'store:profile' user.username %}">Profile</a>
                                     </li>
                                     </li>
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Cart.html">Cart</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'store:cart' user.username %}">Cart</a>
                                     </li>
                                 {% else %} 
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                        href="Register.html">Register</a>
+                                        href="{% url 'store:register' %}">Register</a>
                                     </li>
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Login.html">Login</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'store:login' %}">Login</a>
                                     </li>
                                 {% endif %} 
                             </ul>
