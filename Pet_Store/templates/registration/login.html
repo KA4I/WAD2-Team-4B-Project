@@ -1,23 +1,45 @@
 {% extends 'store/base.html' %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block title_block %}
-    Login
-{% endblock %}
-
+{% block title_block %}Login{% endblock %}
+{% block CSS_block %} <link rel="stylesheet" href="{% static "css/login.css" %}" media="screen"/> {% endblock %}
+{% block og_title %}Login{% endblock %}
 {% block body_block %}
-<h1>Login</h1><br />
-<hr>
-<form method="post" action=".">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <hr>
-    <input class="button" type="submit" value="Log In" />
-    <input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-<p>
-    Not registered?
-    <a href="{% url 'registration_register' %}">Register Here</a>
-</p>
+<section class="u-clearfix u-gradient u-section-1" id="carousel_1fbf">
+    <div class="u-clearfix u-sheet u-sheet-1"><span class="u-align-center u-file-icon u-icon u-text-white u-icon-1"><img
+                src={% static "images/12.png" %} alt=""></span>
+        <h2 class="u-align-center u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">Member Login
+        </h2>
+        <div class="u-align-center u-form u-login-control u-form-1">
+            <form action="#" id="login_form" method="POST"
+                class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
+                name="form" style="padding: 0px;">
+                {% csrf_token %}
+                <input type="hidden" value="" name="recaptchaResponse">
+            
+        </div>
+        <div class="u-form-group u-form-name">
+            <label for="id_username" class="u-custom-font u-font-montserrat u-label u-text-grey-5 u-label-1">Username*</label>
+            <input type="text" placeholder="Enter your Username" id="id_username" name="username"
+                class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-custom-font u-font-montserrat u-input u-input-rectangle"
+                required="">
+        </div>
+        <div class="u-form-group u-form-password">
+            <label for="id_password" class="u-custom-font u-font-montserrat u-label u-text-grey-5 u-label-2">Password
+                *</label>
+            <input type="password" placeholder="Enter your Password" id="id_password" name="password"
+                class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-custom-font u-font-montserrat u-input u-input-rectangle"
+                required="">
+        </div>
+        <div class="u-align-left u-form-group u-form-submit">
+            
+        </div>
+        <div href="#" onclick="document.getElementById('login_form').submit();" type="submit" value="Submit" class="u-active-palette-4-base u-align-center u-border-none u-btn u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-1-base u-text-active-palette-1-base u-text-body-alt-color u-text-hover-palette-1-base u-btn-1">Login</div>
+        </form>
+        <a href="{% url 'registration_register' %}" data-page-id="731501324"
+            class="u-align-center u-border-1 u-border-active-grey-10 u-border-hover-grey-10 u-btn u-button-style u-custom-font u-font-montserrat u-login-control u-login-create-account u-none u-text-body-alt-color u-btn-2">Don't
+            have an account?</a>
+    </div>
+</section>
 {% endblock %}
