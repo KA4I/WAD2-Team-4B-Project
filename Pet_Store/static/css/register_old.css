@@ -1,0 +1,69 @@
+.button {
+    background-color: #008CBA;
+    border: 2px solid #555555;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 10px 60px;
+    transition-duration: 0.4s;
+    }
+.button:hover{
+    background-color: white;
+    color: black;
+    }
+.container{
+    width:600px;
+    }
+.progressbar{
+    counter-reset: step;
+    }
+.progressbar li {
+    width: 25%;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+
+    }
+.progressbar li:before{
+    width: 80px;
+    height: 80px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 80px;
+    border: 2px solid #ddd;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 100%;
+    background-color: #fff;
+    }
+.progressbar li:after {
+    width: 100%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    background-color: #ddd;
+    top: 40px;
+    left: -50%;
+    z-index: -1;
+    }
+.progressbar li:first-child:after{
+    content: none;
+    }
+.progressbar li.active{
+    color: green;
+    border: green;
+    }
+.progressbar li.active:before{
+    border-color: green;
+    }
+.progressbar li.active + li:after {
+    background-color: green;
+    }

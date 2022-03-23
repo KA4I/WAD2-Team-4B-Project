@@ -1,73 +1,371 @@
 {% extends 'store/base.html' %} 
 {% load staticfiles %} 
 
-{% block title_block %}
-    Home
-{% endblock %}
+{% block title_block %}Home{% endblock %}
+{% block og_title %}Home{% endblock %}
 
 {% block body_block %}
-    <div class="jumbotron p-4">
-        <div class="container">
-            <h1 class="jumbotron-heading">Pets R Us!</h1>
-            <div>
-                <h2 class="h2">
-                    {% if user.is_authenticated %} 
-                        Welcome {{ user.username }}!
-                    {% else %} 
-                        Nice to see you, check out these categories!
-                    {% endif %} 
-                </h2>
-            <strong>{{ boldmessage }}</strong>
+<section class="skrollable u-align-center u-clearfix u-section-1" id="sec-be0d">
+    <div class="u-align-left u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <div class="u-expanded-width u-list u-list-1">
+        <div class="u-repeater u-repeater-1">
+          <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
+            <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-1">
+              <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-1">
+                <a class="u-active-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-btn-1"
+                  href="https://localhost/category"><span class="u-file-icon u-icon u-icon-1"><img
+                      src="{% static 'images/6164302.png' %}" alt=""></span>&nbsp;​Cat
+                </a>
+              </p>
             </div>
+          </div>
+          <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
+            <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
+              <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-2">
+                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-text-body-alt-color u-btn-2"
+                  href="https://localhost/category2"><span class="u-file-icon u-icon u-icon-2"><img
+                      src="{% static 'images/2965100.png' %}" alt=""></span>&nbsp;<span class="u-text-body-color">Dog</span>
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
+            <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
+              <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-3"><span
+                  class="u-file-icon u-icon u-icon-3"><img src="{% static 'images/6164302.png' %}" alt=""></span>&nbsp;​Cat
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-6">
-                    <div class="card-body">
-                        <h2>All Categories</h2>
-                        <p class="card-text">
-                        {% if categories %}
-                        <ul class="list-group">
-                        {% for category in categories %}
-                            <li class="list-group-item">
-                            <a class="nav-link" href="{% url 'store:show_category' category.slug %}">
-                            <span data-feather="archive"></span> {{ category.name }}</a>
-                            </li>
-                        {% endfor %}
-                        </ul>
-                        {% else %}
-                        <strong>There are no categories present.</strong>
-                        {% endif %}
-                        </p>
+  </section>
+  <section class="u-align-center u-clearfix u-section-2" id="sec-cfc7">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h2 class="u-text u-text-1">Sample Headline</h2>
+      <p class="u-text u-text-default u-text-2">Sample text. Click to select the text box. Click again or double click
+        to start editing the text.</p>
+      <!--products-->
+      <!--products_options_json-->
+      <!--{"type":"products-category","source":"Dog Products","tags":"","count":""}-->
+      <!--/products_options_json-->
+      <div class="u-expanded-width u-pagination-center u-products u-products-1">
+        <div class="u-repeater u-repeater-1">
+          <!--product_item-->
+          <div class="u-align-center u-container-style u-products-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-1">
+              <!--product_image-->
+              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1"
+                src="{% static 'images/5.svg' %}">
+              <!--/product_image-->
+              <div class="u-align-center u-container-style u-grey-10 u-group u-group-1">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                  <!--product_title-->
+                  <h4 class="u-product-control u-text u-text-3">
+                    <a class="u-product-title-link" href="#">
+                      <!--product_title_content-->Product 1 Title
+                      <!--/product_title_content--></a>
+                  </h4>
+                  <!--/product_title-->
+                  <!--product_price-->
+                  <div class="u-product-control u-product-price u-product-price-1">
+                    <div class="u-price-wrapper u-spacing-10">
+                      <!--product_old_price-->
+                      <div class="u-hide-price u-old-price">
+                        <!--product_old_price_content-->$20.00
+                        <!--/product_old_price_content-->
+                      </div>
+                      <!--/product_old_price-->
+                      <!--product_regular_price-->
+                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
+                        <!--product_regular_price_content-->$17.00
+                        <!--/product_regular_price_content-->
+                      </div>
+                      <!--/product_regular_price-->
                     </div>
+                  </div>
+                  <!--/product_price-->
                 </div>
+              </div>
+              <!--product_content-->
+              <div class="u-product-control u-product-desc u-text u-text-4">
+                <!--product_content_content-->
+                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                  suscipit ultrices.</p>
+                <!--/product_content_content-->
+              </div>
+              <!--/product_content-->
             </div>
-            <div class="col-md-6">
-                <div class="card mb-6">
-                    <div class="card-body">
-                        <h2>Top Products</h2>
-                        <p class="card-text">
-                        {% if products %}
-                        <ul class="list-group">
-                        {% for product in products %}
-                            <li class="list-group-item">
-                            <a class="nav-link" href="{% url 'store:show_product' product.slug %}">
-                            <span data-feather="archive"></span> {{ product.name }}</a>
-                            </li>
-                        {% endfor %}
-                        </ul>
-                        {% else %}
-                        <strong>There are no products present.</strong>
-                        {% endif %}
-                        </p>
+          </div>
+          <!--/product_item-->
+          <!--product_item-->
+          <div class="u-align-center u-container-style u-products-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-3">
+              <!--product_image-->
+              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-2"
+                src="{% static 'images/6.svg' %}">
+              <!--/product_image-->
+              <div class="u-align-center u-container-style u-grey-10 u-group u-group-2">
+                <div class="u-container-layout u-valign-middle u-container-layout-4">
+                  <!--product_title-->
+                  <h4 class="u-product-control u-text u-text-default u-text-5">
+                    <a class="u-product-title-link" href="#">
+                      <!--product_title_content-->Product 2 Title
+                      <!--/product_title_content--></a>
+                  </h4>
+                  <!--/product_title-->
+                  <!--product_price-->
+                  <div class="u-product-control u-product-price u-product-price-2">
+                    <div class="u-price-wrapper u-spacing-10">
+                      <!--product_old_price-->
+                      <div class="u-hide-price u-old-price">
+                        <!--product_old_price_content-->$300.00
+                        <!--/product_old_price_content-->
+                      </div>
+                      <!--/product_old_price-->
+                      <!--product_regular_price-->
+                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
+                        <!--product_regular_price_content-->$245.00
+                        <!--/product_regular_price_content-->
+                      </div>
+                      <!--/product_regular_price-->
                     </div>
+                  </div>
+                  <!--/product_price-->
                 </div>
+              </div>
+              <!--product_content-->
+              <div class="u-product-control u-product-desc u-text u-text-6">
+                <!--product_content_content-->
+                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                  suscipit ultrices.</p>
+                <!--/product_content_content-->
+              </div>
+              <!--/product_content-->
             </div>
+          </div>
+          <!--/product_item-->
+          <!--product_item-->
+          <div class="u-align-center u-container-style u-products-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-5">
+              <!--product_image-->
+              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-3"
+                src="{% static 'images/7.svg' %}">
+              <!--/product_image-->
+              <div class="u-align-center u-container-style u-grey-10 u-group u-group-3">
+                <div class="u-container-layout u-valign-middle u-container-layout-6">
+                  <!--product_title-->
+                  <h4 class="u-product-control u-text u-text-default u-text-7">
+                    <a class="u-product-title-link" href="#">
+                      <!--product_title_content-->Product 3 Title
+                      <!--/product_title_content--></a>
+                  </h4>
+                  <!--/product_title-->
+                  <!--product_price-->
+                  <div class="u-product-control u-product-price u-product-price-3">
+                    <div class="u-price-wrapper u-spacing-10">
+                      <!--product_old_price-->
+                      <div class="u-hide-price u-old-price">
+                        <!--product_old_price_content-->$25.00
+                        <!--/product_old_price_content-->
+                      </div>
+                      <!--/product_old_price-->
+                      <!--product_regular_price-->
+                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
+                        <!--product_regular_price_content-->$19.00
+                        <!--/product_regular_price_content-->
+                      </div>
+                      <!--/product_regular_price-->
+                    </div>
+                  </div>
+                  <!--/product_price-->
+                </div>
+              </div>
+              <!--product_content-->
+              <div class="u-product-control u-product-desc u-text u-text-8">
+                <!--product_content_content-->
+                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                  suscipit ultrices.</p>
+                <!--/product_content_content-->
+              </div>
+              <!--/product_content-->
+            </div>
+          </div>
+          <!--/product_item-->
+          <!--product_item-->
+          <div class="u-align-center u-container-style u-products-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-7">
+              <!--product_image-->
+              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-4"
+                src="{% static 'images/8.svg' %}">
+              <!--/product_image-->
+              <div class="u-align-center u-container-style u-grey-10 u-group u-group-4">
+                <div class="u-container-layout u-valign-middle u-container-layout-8">
+                  <!--product_title-->
+                  <h4 class="u-product-control u-text u-text-default u-text-9">
+                    <a class="u-product-title-link" href="#">
+                      <!--product_title_content-->Product 4 Title
+                      <!--/product_title_content--></a>
+                  </h4>
+                  <!--/product_title-->
+                  <!--product_price-->
+                  <div class="u-product-control u-product-price u-product-price-4">
+                    <div class="u-price-wrapper u-spacing-10">
+                      <!--product_old_price-->
+                      <div class="u-hide-price u-old-price">
+                        <!--product_old_price_content-->$25.00
+                        <!--/product_old_price_content-->
+                      </div>
+                      <!--/product_old_price-->
+                      <!--product_regular_price-->
+                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
+                        <!--product_regular_price_content-->$20.00
+                        <!--/product_regular_price_content-->
+                      </div>
+                      <!--/product_regular_price-->
+                    </div>
+                  </div>
+                  <!--/product_price-->
+                </div>
+              </div>
+              <!--product_content-->
+              <div class="u-product-control u-product-desc u-text u-text-10">
+                <!--product_content_content-->
+                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                  suscipit ultrices.</p>
+                <!--/product_content_content-->
+              </div>
+              <!--/product_content-->
+            </div>
+          </div>
+          <!--/product_item-->
+          <!--product_item-->
+          <div class="u-align-center u-container-style u-products-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-9">
+              <!--product_image-->
+              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-5"
+                src="{% static 'images/9.svg' %}">
+              <!--/product_image-->
+              <div class="u-align-center u-container-style u-grey-10 u-group u-group-5">
+                <div class="u-container-layout u-valign-middle u-container-layout-10">
+                  <!--product_title-->
+                  <h4 class="u-product-control u-text u-text-default u-text-11">
+                    <a class="u-product-title-link" href="#">
+                      <!--product_title_content-->Product 5 Title
+                      <!--/product_title_content--></a>
+                  </h4>
+                  <!--/product_title-->
+                  <!--product_price-->
+                  <div class="u-product-control u-product-price u-product-price-5">
+                    <div class="u-price-wrapper u-spacing-10">
+                      <!--product_old_price-->
+                      <div class="u-hide-price u-old-price">
+                        <!--product_old_price_content-->$10.00
+                        <!--/product_old_price_content-->
+                      </div>
+                      <!--/product_old_price-->
+                      <!--product_regular_price-->
+                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
+                        <!--product_regular_price_content-->$7.00
+                        <!--/product_regular_price_content-->
+                      </div>
+                      <!--/product_regular_price-->
+                    </div>
+                  </div>
+                  <!--/product_price-->
+                </div>
+              </div>
+              <!--product_content-->
+              <div class="u-product-control u-product-desc u-text u-text-12">
+                <!--product_content_content-->
+                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                  suscipit ultrices.</p>
+                <!--/product_content_content-->
+              </div>
+              <!--/product_content-->
+            </div>
+          </div>
+          <!--/product_item-->
+          <!--product_item-->
+          <div class="u-align-center u-container-style u-products-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-11">
+              <!--product_image-->
+              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-6"
+                src="{% static 'images/10.svg' %}">
+              <!--/product_image-->
+              <div class="u-align-center u-container-style u-grey-10 u-group u-group-6">
+                <div class="u-container-layout u-valign-middle u-container-layout-12">
+                  <!--product_title-->
+                  <h4 class="u-product-control u-text u-text-default u-text-13">
+                    <a class="u-product-title-link" href="#">
+                      <!--product_title_content-->Product 6 Title
+                      <!--/product_title_content--></a>
+                  </h4>
+                  <!--/product_title-->
+                  <!--product_price-->
+                  <div class="u-product-control u-product-price u-product-price-6">
+                    <div class="u-price-wrapper u-spacing-10">
+                      <!--product_old_price-->
+                      <div class="u-hide-price u-old-price">
+                        <!--product_old_price_content-->$175.00
+                        <!--/product_old_price_content-->
+                      </div>
+                      <!--/product_old_price-->
+                      <!--product_regular_price-->
+                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
+                        <!--product_regular_price_content-->$150.00
+                        <!--/product_regular_price_content-->
+                      </div>
+                      <!--/product_regular_price-->
+                    </div>
+                  </div>
+                  <!--/product_price-->
+                </div>
+              </div>
+              <!--product_content-->
+              <div class="u-product-control u-product-desc u-text u-text-14">
+                <!--product_content_content-->
+                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                  suscipit ultrices.</p>
+                <!--/product_content_content-->
+              </div>
+              <!--/product_content-->
+            </div>
+          </div>
+          <!--/product_item-->
         </div>
+        <div class="u-list-control">
+          <!--products_pagination-->
+          <!--products_pagination_options_json-->
+          <!--{"ul":"style=\"\" class=\"responsive-style1 u-custom-font u-font-montserrat u-pagination u-unstyled\"","li":"style=\"\" class=\"u-nav-item u-pagination-item\"","link":"style=\"padding: 16px 28px;\" class=\"u-button-style u-nav-link\""}-->
+          <!--/products_pagination_options_json-->
+          <ul class="responsive-style1 u-custom-font u-font-montserrat u-pagination u-unstyled">
+            <li class="disabled prev u-nav-item u-pagination-item">
+              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">〈</a>
+            </li>
+            <li class="active u-nav-item u-pagination-item">
+              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">1</a>
+            </li>
+            <li class="u-nav-item u-pagination-item">
+              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">2</a>
+            </li>
+            <li class="u-nav-item u-pagination-item">
+              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">3</a>
+            </li>
+            <li class="u-nav-item u-pagination-item u-pagination-separator">
+              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">...</a>
+            </li>
+            <li class="u-nav-item u-pagination-item">
+              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">8</a>
+            </li>
+            <li class="next u-nav-item u-pagination-item">
+              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">〉</a>
+            </li>
+          </ul>
+          <!--/products_pagination-->
         </div>
+      </div>
+      <!--/products-->
     </div>
-</div> 
+  </section>
 {% endblock %}
