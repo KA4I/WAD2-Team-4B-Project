@@ -5,9 +5,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 import django
 django.setup()
 from store.models import Category, Product, Cart, Review
-
 def populate():
-
     toy_products = [{'uid':1,'name':'Squeaky Bone','description':'A toy bone that makes a sound!','price':2.99, 'likes': 1},
                     {'uid':2,'name':'Ball and String','description':'Fun for all animals (but mostly cats)','price':4.99, 'likes': 2},
                     {'uid':3,'name':'Cat Tower','description':'For cats to climb and make their home in.','price':10.99, 'likes': 4}]
@@ -20,12 +18,13 @@ def populate():
                     {'uid':8,'name':'Crickets','description':'A lizards favourite food, beware, they jump.','price':1.99, 'likes': 128},
                     {'uid':9,'name':'Canned Cat Food','description':'Meat chunks in brine, not safe for human comsumption','price':1.99, 'likes': 256}]
 
-    cat = {'Toys':{'products':toy_products},
-            'Animals':{'products':animal_products},
-            'Food':{'products':food_products}}
+    cat = {'Toys':{'products':toy_products, 'icon':'images/toyCategory.png'},
+            'Animals':{'products':animal_products, 'icon':'images/2965100.png'},
+            'Food':{'products':food_products, 'icon':'images/toyCategory.png'}}
+
 
     for cat, cat_data in cat.items():
-        c = add_cat(cat)
+        c = add_cat(cat, cat_data['icon'])
         for p in cat_data['products']:
             add_product(c, p['name'], p['uid'], p['description'], p['price'], p['likes'])
 
@@ -41,10 +40,11 @@ def add_product(cat, name, uid, description, price=0.99, likes=0):
     p.save()
     return p
 
-def add_cat(name):
-    c = Category.objects.get_or_create(name=name)[0]
+def add_cat(name, icon):
+    c = Category.objects.get_or_create(name=name, icon=icon)[0]
     c.save()
     return c
+
 
 if __name__ == '__main__':
     print('Starting Store population script...')

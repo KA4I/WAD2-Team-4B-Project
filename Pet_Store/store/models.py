@@ -11,6 +11,7 @@ from django.utils import timezone
 class Category(models.Model):
     name = models.CharField(max_length=64, unique=True)
     views = models.IntegerField(default=0)
+    icon = models.CharField(max_length=64, default='')
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
