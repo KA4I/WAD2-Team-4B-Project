@@ -11,18 +11,22 @@ from django.views import View
 from store.models import Category, Product, UserProfile, Cart, Order
 from store.forms import UserForm, UserProfileForm
 import uuid
+from django.core.paginator import Paginator
 
 
 # Create your views here.
 
 def home(request):
     category_list = Category.objects.all()
-    product_list = Product.objects.order_by('-likes')[:6]
+    product_list = Product.objects.order_by('-likes')[:9]
+    paginator = Paginator(product_list, 6)
+    page = request.GET.get('page')
+    product = paginator.get_page(page)
 
     context_dict = {}
-    context_dict['boldmessage'] = 'Enjoy your visit!'
     context_dict['categories'] = category_list
     context_dict['products'] = product_list
+    context_dict['product_pages'] = product
 
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
@@ -45,6 +49,10 @@ def show_category(request, category_name_slug):
         products = Product.objects.filter(category=category)
 
         context_dict['products'] = products
+        paginator = Paginator(products, 6)
+        page = request.GET.get('page')
+        product = paginator.get_page(page)
+        context_dict['product_pages'] = product
         context_dict['category'] = category
     except Category.DoesNotExist:
         context_dict['products'] = None
@@ -293,12 +301,17 @@ class OrderCartView(View):
         except Exception as e:
             print(e)
             return HttpResponse(-1)
+
+
 def search(request):
     context_dict = {}
-    context_dict['boldmessage'] = 'Enjoy your visit!'
-    if request.method == 'GET':
+    if request.method == "GET":
         search = request.GET.get('search')
-        if search:
-            products = Product.objects.filter(name__contains=search)
-            context_dict['products'] = products
+    if search:
+        products = Product.objects.filter(name__contains=search)
+        paginator = Paginator(Product.objects.filter(name__contains=search), 9)
+        page = request.GET.get('page')
+        product = paginator.get_page(page)
+        context_dict['product_pages'] = product
+        context_dict['products'] = products
     return render(request, 'store/search.html', context_dict)

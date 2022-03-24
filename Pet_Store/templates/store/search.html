@@ -43,8 +43,9 @@
         </div>
       </div>
     </div>
+
   </section>
-     <h2>Search Results....</h2>
+    <h2>Search Results....</h2>
     <section class="u-align-center u-clearfix u-section-2" id="sec-cfc7">
     <div class="u-clearfix u-sheet u-sheet-1">
      {% if products %}
@@ -104,38 +105,49 @@
          {% else %}
          <h4>Not Found.</h4>
          {% endif %}
+
         <div class="u-list-control">
           <!--products_pagination-->
           <!--products_pagination_options_json-->
           <!--{"ul":"style=\"\" class=\"responsive-style1 u-custom-font u-font-montserrat u-pagination u-unstyled\"","li":"style=\"\" class=\"u-nav-item u-pagination-item\"","link":"style=\"padding: 16px 28px;\" class=\"u-button-style u-nav-link\""}-->
           <!--/products_pagination_options_json-->
-          <ul class="responsive-style1 u-custom-font u-font-montserrat u-pagination u-unstyled">
+           <ul class="responsive-style1 u-custom-font u-font-montserrat u-pagination u-unstyled">
+            {% if product_pages.has_previous %}
+            <li class=" u-nav-item u-pagination-item">
+              <a class="u-button-style u-nav-link" href="?page={{ product.previous_page_number }}" style="padding: 16px 28px;">〈</a>
+            </li>
+            {% else %}
             <li class="disabled prev u-nav-item u-pagination-item">
-              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">〈</a>
+               <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">〈</a>
             </li>
-            <li class="active u-nav-item u-pagination-item">
-              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">1</a>
-            </li>
-            <li class="u-nav-item u-pagination-item">
-              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">2</a>
-            </li>
-            <li class="u-nav-item u-pagination-item">
-              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">3</a>
-            </li>
-            <li class="u-nav-item u-pagination-item u-pagination-separator">
-              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">...</a>
-            </li>
-            <li class="u-nav-item u-pagination-item">
-              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">8</a>
-            </li>
-            <li class="next u-nav-item u-pagination-item">
-              <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">〉</a>
-            </li>
-          </ul>
+            {% endif %}
+
+            {% for number in product_pages.paginator.page_range %}
+              {% if product_pages.number == number %}
+                <li class="active u-nav-item u-pagination-item">
+                  <a class="u-button-style u-nav-link colorfont" href="?page={{ number }}" style="padding: 16px 28px; color:black;">{{ number }}</a>
+                </li>
+              {% elif number > product_pages.number|add:'-3' and number < product_pages.number|add:'3' %}
+                <li class="active u-nav-item u-pagination-item">
+                  <a class="u-button-style u-nav-link" href="?page={{ number }}" style="padding: 16px 28px;">{{ number }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% if product_pages.has_next %}
+              <li class="next u-nav-item u-pagination-item">
+                <a class="u-button-style u-nav-link" href="?page={{ product_pages.next_page_number }}" style="padding: 16px 28px;">〉</a>
+              </li>
+            {% else %}
+              <li class="disabled next u-nav-item u-pagination-item">
+                <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">〉</a>
+              </li>
+            {% endif %}
+           </ul>
           <!--/products_pagination-->
         </div>
       </div>
       <!--/products-->
     </div>
-</section>
+  </section>
 {% endblock %}
