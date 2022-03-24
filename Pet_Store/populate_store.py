@@ -20,7 +20,7 @@ def populate():
 
     cat = {'Toys':{'products':toy_products, 'icon':'images/toyCategory.png'},
             'Animals':{'products':animal_products, 'icon':'images/2965100.png'},
-            'Food':{'products':food_products, 'icon':'images/toyCategory.png'}}
+            'Food':{'products':food_products, 'icon':'images/foodCategory.png'}}
 
 
     for cat, cat_data in cat.items():
