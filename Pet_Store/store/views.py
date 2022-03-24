@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
-from store.models import Category, Product, UserProfile, Cart, Order
-from store.forms import UserForm, UserProfileForm
+from store.models import Category, Product, UserProfile, Cart, Order, Review
+from store.forms import UserForm, UserProfileForm, ReviewForm
 import uuid
 from django.core.paginator import Paginator
 
@@ -75,6 +75,13 @@ def show_product(request, product_name_slug):
     product_object = Product.objects.get(slug = product_name_slug)
     product_object.views = product_object.views + 1
     product_object.save()   
+
+    try:
+        reviews = Review.objects.filter(product=product_object)
+        context_dict['reviews'] = reviews
+    except Review.DoesNotExist:
+        context_dict['reviews'] = None
+
     return render(request, 'store/product.html', context=context_dict)
 
 @login_required
@@ -95,6 +102,38 @@ def register_profile(request):
 
     context_dict = {'form': form}
     return render(request, 'store/profile_registration.html', context_dict)
+
+@login_required
+def write_review(request, product_name_slug):
+
+    context_dict = {}
+    try:
+        product = Product.objects.get(slug=product_name_slug)
+        context_dict['product'] = product
+    except Product.DoesNotExist:
+        context_dict['product'] = None
+        
+    product_object = Product.objects.get(slug = product_name_slug)
+    product_object.views = product_object.views + 1
+    product_object.save()   
+
+    form = ReviewForm()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            new_review = form.save(commit=False)
+            new_review.user = request.user
+            new_review.product = product_object
+            new_review.save()
+
+            return redirect(reverse('store:home'))
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form}
+    return render(request, 'store/review.html', context_dict)
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)

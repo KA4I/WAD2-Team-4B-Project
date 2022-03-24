@@ -60,9 +60,9 @@ class Cart(models.Model):
         return "Order"
 
 class Review(models.Model):
-    uid = models.IntegerField(unique=True)
-    review = models.CharField(max_length=225)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    title = models.CharField(max_length=32)
+    review = models.TextField(max_length=225)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):

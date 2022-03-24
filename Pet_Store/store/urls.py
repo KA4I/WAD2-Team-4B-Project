@@ -10,6 +10,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
     path('product/<slug:product_name_slug>/', views.show_product, name='show_product'),
+    path('review/<slug:product_name_slug>/', views.write_review, name='write_review'),
     path('register_profile/', views.register_profile, name='register_profile'),
     path('profile/<username>/', views.ProfileView.as_view(), name='profile'),
     path('like_product/', views.LikeProductView.as_view(), name='like_product'),

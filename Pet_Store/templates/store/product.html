@@ -113,21 +113,11 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
               <!--product_old_price-->
               <div class="u-price u-text-black" style="font-size: 1.875rem; font-weight: 700;">
                 <!--product_regular_price_content-->£{{ product.price }}
-                <!--/product_regular_price_content-->
               </div>
-              <!--/product_old_price-->
-              <!--/product_regular_price-->
             </div>
           </div>
-          <!--/product_price-->
-          <!--product_content-->
-          <div class="u-custom-font u-font-montserrat u-product-control u-product-desc u-text u-text-2">
-            <!--product_content_content-->
-            <p>{{ product.description }}</p>
-            <!--/product_content_content-->
-          <!--/product_content-->
-          <!--product_button-->
-          <!--options_json-->
+        <div class="u-custom-font u-font-montserrat u-product-control u-product-desc u-text u-text-2">
+          <p>{{ product.description }}</p>
           <div>
             {% if user.is_authenticated %}
             <button id="add_btn"
@@ -167,6 +157,26 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
       <!--/product-->
       <h2>This product has <strong id="like_count">{{product.likes}}</strong> likes</h2>
     </div>
+  </div>
+</div>
+<div>
+  <a class="u-active-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-hover-black u-none u-product-control u-text-active-white u-text-black u-text-hover-white u-btn-1"
+  href="/store/review/{{ product.slug }}">Review Product</a>
+</div>
+<div>
+  {% if reviews %} 
+    {% for review in reviews %}
+      User: {{ review.user.username }} left a review
+      <br></br>
+      Title: {{ review.title }} 
+      <br></br>
+      Text: {{ review.review }}
+      <br></br>
+      <br></br>
+    {% endfor %}
+  {% endif %}
+</div>
+
   </section>
   <!--
     <div>
