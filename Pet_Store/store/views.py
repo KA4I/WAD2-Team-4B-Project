@@ -25,7 +25,6 @@ def home(request):
 
     context_dict = {}
     context_dict['categories'] = category_list
-    context_dict['products'] = product_list
     context_dict['product_pages'] = product
 
     visitor_cookie_handler(request)

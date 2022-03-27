@@ -5,15 +5,22 @@
 {% block og_title %}Home{% endblock %}
 {% block CSS_block %}<link rel="stylesheet" href={% static 'css/Home.css' %} media="screen">{% endblock %}
 {% block body_block %}
+  <!--category-->
   {% include "store/icon.html" with categories=categories %}
+  <!--//category-->
   <section class="u-align-center u-clearfix u-section-2" id="sec-cfc7" style="color: #EDF5E1">
     <div class="u-clearfix u-sheet u-sheet-1">
+      <!--heading-->
       <h2 class="u-text u-text-1">Popular Products</h2>
       <p class="u-text u-text-default u-text-2">Our Google Customer Reviews: 5.0 ★★★★★</p>
+      <!--/heading-->
+      <!--products-->
       {%  include "store/show_product.html" with product_pages=product_pages %}
-        {% include "store/pagination.html" with product_pages=product_pages %}
-      </div>
       <!--/products-->
+      <!--pagination-->
+        {% include "store/pagination.html" with product_pages=product_pages %}
+      <!--/pagination-->
+      </div>
     </div>
   </section>
 {% endblock %}
