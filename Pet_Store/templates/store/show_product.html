@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!--products-->
+      <!--products_options_json-->
+      <!--{"type":"products-category","source":"Dog Products","tags":"","count":""}-->
+      <!--/products_options_json-->
+<div class="u-expanded-width u-pagination-center u-products u-products-1">
+        <div class="u-repeater u-repeater-1">
+          {% for product in product_pages %}
+          <!--product_item-->
+          <div class="u-align-center u-container-style u-products-item u-repeater-item">
+            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-1">
+              <!--product_image-->
+               <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1"
+              {% with 'images/'|add:product.name|add:'.png' as image %}
+              <img src="{% static image %}"/>
+                {% endwith %}
+              <!--/product_image-->
+              <div class="u-align-center u-container-style u-grey-10 u-group u-group-1">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                  <!--product_title-->
+                  <h4 class="u-product-control u-text u-text-3">
+                    <a class="u-product-title-link" href="/store/product/{{ product.slug }}">
+                      <!--product_title_content-->{{ product.name }}
+                      <!--/product_title_content--></a>
+                  </h4>
+                  <!--/product_title-->
+                  <!--product_price-->
+                  <div class="u-product-control u-product-price u-product-price-1">
+                    <div class="u-price-wrapper u-spacing-10">
+                      <!--product_old_price-->
+                      <div class="u-hide-price u-old-price">
+                        <!--product_old_price_content-->$20.00
+                        <!--/product_old_price_content-->
+                      </div>
+                      <!--/product_old_price-->
+                      <!--product_regular_price-->
+                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
+                        <!--product_regular_price_content-->£{{ product.price }}
+                        <!--/product_regular_price_content-->
+                      </div>
+                      <!--/product_regular_price-->
+                    </div>
+                  </div>
+                  <!--/product_price-->
+                </div>
+              </div>
+              <div class="u-product-control u-product-desc u-text u-text-4">
+                 <!--product_content_content-->
+                 <p class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;" >
+                   <!--product_regular_price_content-->{{ product.description }}
+                 <!--/product_content_content-->
+                 </p>
+                 <!--/product_content_content-->
+               </div>
+               <!--/product_content-->
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+</div>

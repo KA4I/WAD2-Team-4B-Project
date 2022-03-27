@@ -47,6 +47,8 @@ def show_category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
         products = Product.objects.filter(category=category)
+        category_list = Category.objects.all()
+        context_dict['categories'] = category_list
 
         context_dict['products'] = products
         paginator = Paginator(products, 6)
@@ -343,7 +345,9 @@ class OrderCartView(View):
 
 
 def search(request):
+    category_list = Category.objects.all()
     context_dict = {}
+    context_dict['categories'] = category_list
     if request.method == "GET":
         search = request.GET.get('search')
     if search:

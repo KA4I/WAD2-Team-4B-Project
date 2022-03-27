@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<section class="skrollable u-align-center u-clearfix u-section-1" id="sec-be0d" >
+    <div class="u-align-left u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <div class="u-expanded-width u-list u-list-1">
+        <div class="u-repeater u-repeater-1">
+          {% for category in categories %}
+          <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
+            <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-1">
+              <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-1">
+                <a class="u-active-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-btn-1"
+                  href="{% url 'store:show_category' category.slug %}"><span class="u-file-icon u-icon u-icon-1">
+                      {% with category.icon as image %}
+                        <img src="{% static image %}"/>{% endwith %}
+                </span>&nbsp;{{ category.name }}
+                </a>
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>

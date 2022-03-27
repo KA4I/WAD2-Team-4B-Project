@@ -5,147 +5,19 @@
 {% block CSS_block %}<link rel="stylesheet" href={% static 'css/Home.css' %} media="screen">{% endblock %}
 
 
- {% block body_block %}
-<section class="skrollable u-align-center u-clearfix u-section-1" id="sec-be0d" >
-    <div class="u-align-left u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <div class="u-expanded-width u-list u-list-1">
-        <div class="u-repeater u-repeater-1">
-          <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
-            <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-1">
-              <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-1">
-                <a class="u-active-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-btn-1"
-                  href="http://127.0.0.1:8000/store/category/toys/"><span class="u-file-icon u-icon u-icon-1"><img
-                      src="{% static 'images/toyCategory.png' %}" alt=""></span>&nbsp;Toys
-                </a>
-              </p>
-            </div>
-          </div>
-          <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
-            <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
-              <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-2">
-                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-text-body-alt-color u-btn-2"
-                  href="http://127.0.0.1:8000/store/category/animals/"><span class="u-file-icon u-icon u-icon-2"><img
-                      src="{% static 'images/2965100.png' %}" alt=""></span>&nbsp;<span class="u-text-body-color">Pets</span>
-                </a>
-              </p>
-            </div>
-          </div>
-           <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-shape-rectangle">
-             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
-               <p class="u-custom-font u-custom-item u-font-montserrat u-text u-text-default u-text-2">
-                 <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-hover-none u-none u-text-body-alt-color u-btn-2"
-                   href="http://127.0.0.1:8000/store/category/food/"><span class="u-file-icon u-icon u-icon-2"><img
-                       src="{% static 'images/foodCategory.png' %}" alt=""></span>&nbsp;<span class="u-text-body-color">Pet Food</span>
-                       </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
+{% block body_block %}
+    {% include "store/icon.html" with categories=categories %}
     <h2>Search Results....</h2>
     <section class="u-align-center u-clearfix u-section-2" id="sec-cfc7">
     <div class="u-clearfix u-sheet u-sheet-1">
-     {% if products %}
-         <div class="u-expanded-width u-pagination-center u-products u-products-1">
-        <div class="u-repeater u-repeater-1">
-          {% for product in products %}
-          <!--product_item-->
-          <div class="u-align-center u-container-style u-products-item u-repeater-item">
-            <div class="u-container-layout u-similar-container u-valign-bottom-sm u-container-layout-1">
-              <!--product_image-->
-              <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1"
-              {% with 'images/'|add:product.name|add:'.png' as image %}
-              <img src="{% static image %}"/>
-                {% endwith %}
-              <!--/product_image-->
-              <div class="u-align-center u-container-style u-grey-10 u-group u-group-1">
-                <div class="u-container-layout u-valign-middle u-container-layout-2">
-                  <!--product_title-->
-                  <h4 class="u-product-control u-text u-text-3">
-                    <a class="u-product-title-link" href="/store/product/{{ product.slug }}">
-                      <!--product_title_content-->{{ product.name }}
-                      <!--/product_title_content--></a>
-                  </h4>
-                  <!--/product_title-->
-                  <!--product_price-->
-                  <div class="u-product-control u-product-price u-product-price-1">
-                    <div class="u-price-wrapper u-spacing-10">
-                      <!--product_old_price-->
-                      <div class="u-hide-price u-old-price">
-                        <!--product_old_price_content-->$20.00
-                        <!--/product_old_price_content-->
-                      </div>
-                      <!--/product_old_price-->
-                      <!--product_regular_price-->
-                      <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;">
-                        <!--product_regular_price_content-->${{ product.price }}
-                        <!--/product_regular_price_content-->
-                      </div>
-                      <!--/product_regular_price-->
-                    </div>
-                  </div>
-                  <!--/product_price-->
-                </div>
-              </div>
-              <div class="u-product-control u-product-desc u-text u-text-4">
-                 <!--product_content_content-->
-                 {{ product.description }}
-                 <!--/product_content_content-->
-               </div>
-               <!--/product_content-->
-              </div>
-            </div>
-          {% endfor %}
-          </div>
-        </div>
+     {% if product_pages %}
+        {% include "store/show_product.html" with product_pages=product_pages %}
     </div>
          {% else %}
          <h4>Not Found.</h4>
          {% endif %}
 
-        <div class="u-list-control">
-          <!--products_pagination-->
-          <!--products_pagination_options_json-->
-          <!--{"ul":"style=\"\" class=\"responsive-style1 u-custom-font u-font-montserrat u-pagination u-unstyled\"","li":"style=\"\" class=\"u-nav-item u-pagination-item\"","link":"style=\"padding: 16px 28px;\" class=\"u-button-style u-nav-link\""}-->
-          <!--/products_pagination_options_json-->
-           <ul class="responsive-style1 u-custom-font u-font-montserrat u-pagination u-unstyled">
-            {% if product_pages.has_previous %}
-            <li class=" u-nav-item u-pagination-item">
-              <a class="u-button-style u-nav-link" href="?page={{ product.previous_page_number }}" style="padding: 16px 28px;">〈</a>
-            </li>
-            {% else %}
-            <li class="disabled prev u-nav-item u-pagination-item">
-               <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">〈</a>
-            </li>
-            {% endif %}
-
-            {% for number in product_pages.paginator.page_range %}
-              {% if product_pages.number == number %}
-                <li class="active u-nav-item u-pagination-item">
-                  <a class="u-button-style u-nav-link colorfont" href="?page={{ number }}" style="padding: 16px 28px; color:black;">{{ number }}</a>
-                </li>
-              {% elif number > product_pages.number|add:'-3' and number < product_pages.number|add:'3' %}
-                <li class="active u-nav-item u-pagination-item">
-                  <a class="u-button-style u-nav-link" href="?page={{ number }}" style="padding: 16px 28px;">{{ number }}</a>
-                </li>
-              {% endif %}
-            {% endfor %}
-
-            {% if product_pages.has_next %}
-              <li class="next u-nav-item u-pagination-item">
-                <a class="u-button-style u-nav-link" href="?page={{ product_pages.next_page_number }}" style="padding: 16px 28px;">〉</a>
-              </li>
-            {% else %}
-              <li class="disabled next u-nav-item u-pagination-item">
-                <a class="u-button-style u-nav-link" href="#" style="padding: 16px 28px;">〉</a>
-              </li>
-            {% endif %}
-           </ul>
-          <!--/products_pagination-->
-        </div>
+       {% include "store/pagination.html" with product_pages=product_pages %}
       </div>
       <!--/products-->
     </div>
