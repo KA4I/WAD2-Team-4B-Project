@@ -3,7 +3,8 @@
 {% load crispy_forms_tags %}
 
 {% block title_block %}Login{% endblock %}
-{% block CSS_block %} <link rel="stylesheet" href="{% static "css/login.css" %}" media="screen"/> {% endblock %}
+{% block CSS_block %}
+<link rel="stylesheet" href="{% static "css/login.css" %}" media="screen" /> {% endblock %}
 {% block og_title %}Login{% endblock %}
 {% block body_block %}
 <section class="u-clearfix u-gradient u-section-1" id="carousel_1fbf">
@@ -11,16 +12,14 @@
                 src={% static "images/12.png" %} alt=""></span>
         <h2 class="u-align-center u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">Member Login
         </h2>
-        <div class="u-align-center u-form u-login-control u-form-1">
-            <form action="#" id="login_form" method="POST"
+        <form action="#" id="login_form" method="POST"
                 class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
-                name="form" style="padding: 0px;">
+                name="form" style="justify-content: center;">
                 {% csrf_token %}
                 <input type="hidden" value="" name="recaptchaResponse">
-            
-        </div>
         <div class="u-form-group u-form-name">
-            <label for="id_username" class="u-custom-font u-font-montserrat u-label u-text-grey-5 u-label-1">Username*</label>
+            <label for="id_username"
+                class="u-custom-font u-font-montserrat u-label u-text-grey-5 u-label-1">Username*</label>
             <input type="text" placeholder="Enter your Username" id="id_username" name="username"
                 class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-custom-font u-font-montserrat u-input u-input-rectangle"
                 required="">
@@ -33,9 +32,11 @@
                 required="">
         </div>
         <div class="u-align-left u-form-group u-form-submit">
-            
+
         </div>
-        <div href="#" onclick="document.getElementById('login_form').submit();" type="submit" value="Submit" class="u-active-palette-4-base u-align-center u-border-none u-btn u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-1-base u-text-active-palette-1-base u-text-body-alt-color u-text-hover-palette-1-base u-btn-1">Login</div>
+        <div href="#" onclick="document.getElementById('login_form').submit();" type="submit" value="Submit"
+            class="u-active-palette-4-base u-align-center u-border-none u-btn u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-1-base u-text-active-palette-1-base u-text-body-alt-color u-text-hover-palette-1-base u-btn-1">
+            Login</div>
         </form>
         <a href="{% url 'registration_register' %}" data-page-id="731501324"
             class="u-align-center u-border-1 u-border-active-grey-10 u-border-hover-grey-10 u-btn u-button-style u-custom-font u-font-montserrat u-login-control u-login-create-account u-none u-text-body-alt-color u-btn-2">Don't

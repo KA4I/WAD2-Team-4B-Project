@@ -147,3 +147,8 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_CLASS_CONVERTERS = {
+    'textinput': "textinput u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-custom-font u-font-montserrat u-input u-input-rectangle",
+    'emailinput': "emailinput u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-custom-font u-font-montserrat u-input u-input-rectangle",
+    'passwordinput': "passwordinput u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-custom-font u-font-montserrat u-input u-input-rectangle",
+}

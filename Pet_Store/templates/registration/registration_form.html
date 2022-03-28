@@ -9,27 +9,26 @@
 {% block body_block %}
 <section class="u-clearfix u-gradient u-section-1" id="carousel_1fbf">
     <div class="u-clearfix u-sheet u-sheet-1"><span class="u-align-center u-file-icon u-icon u-text-white u-icon-1">
-        <img class="u-back-image u-expanded"
-            {% with 'images/12.png' as image %}
-            <img src="{% static image %}"/>
+            <img class="u-back-image u-expanded" {% with 'images/12.png' as image %} <img src="{% static image %}" />
             {% endwith %}
-        </img></span>
+            </img></span>
 
         <h2 class="u-align-center u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">Register</h2>
         <div class="u-align-left u-form u-login-control u-form-1">
 
-        <form method="post" action="."
-            class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 0px;">
+            <form method="post" action="."
+                class="" source="custom"
+                style="padding: 0px;">
 
-            {% csrf_token %}
+                {% csrf_token %}
 
-        <div>
-            {{ form|crispy }}
+                <div>
+                    {{ form|crispy }}
+                </div>
+
         </div>
-        
-    </div>
         <input type="submit" value="Register"
-            class="u-active-palette-4-base u-align-center u-border-none u-btn u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-1-base u-text-active-palette-1-base u-text-body-alt-color u-text-hover-palette-1-base u-btn-1"/>
+            class="u-active-palette-4-base u-align-center u-border-none u-btn u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-1-base u-text-active-palette-1-base u-text-body-alt-color u-text-hover-palette-1-base u-btn-1" />
         </form>
         <a href="{% url 'auth_login' %}" data-page-id="50703560"
             class="u-align-center u-border-1 u-border-active-grey-10 u-border-hover-grey-10 u-btn u-button-style u-custom-font u-font-montserrat u-login-control u-login-create-account u-none u-text-body-alt-color u-btn-2">Have
