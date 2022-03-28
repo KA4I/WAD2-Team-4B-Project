@@ -9,7 +9,7 @@ $(document).ready(function() {
         $.get('/store/like_product/',
             {'product_id': productIdVar},
             function(data) {
-                $('#like_count').html("This product has " + data + " likes");
+                $('#like_count').html(data);
                 $('#like_btn').hide();
             })
     });
