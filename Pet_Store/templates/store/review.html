@@ -1,17 +1,30 @@
 {% extends 'store/base.html' %} 
-
+{% load staticfiles %}
 {% block title_block %} 
     Review 
 {% endblock %}  
+{%block CSS_block%}<link rel="stylesheet" href="{% static "css/Review.css" %}" media="screen" /> {% endblock %}
 
 {% block body_block %}
-<h1> Leave a Review </h1>
-
-<form method="post" actions=".">
-    {% csrf_token %} 
-
-    {{ form.as_p }}
-
-    <input type="submit" value="Publish"/>
-</form>
+<section class="u-clearfix u-section-1" id="sec-e1a5">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <div class="u-form u-form-1">
+        <form action="#" method="post" action='.' class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+            {% csrf_token %} 
+            <div class="u-form-group u-form-name">
+            <label for="id_title" class="u-custom-font u-font-montserrat u-label">Title</label>
+            <input type="text" placeholder="Title" required="" id="id_title" name="title" class="u-border-1 u-border-grey-30 u-custom-font u-font-montserrat u-input u-input-rectangle u-white" required="">
+          </div>
+          <div class="u-form-group u-form-message">
+            <label for="id_review" class="u-custom-font u-font-montserrat u-label">Review</label>
+            <textarea placeholder="Enter your review" required="" id="id_review" rows="4" cols="50" name="review" class="u-border-1 u-border-grey-30 u-custom-font u-font-montserrat u-input u-input-rectangle u-white" required=""></textarea>
+          </div>
+          <div class="u-align-center u-form-group u-form-submit">
+            <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
+            <input type="submit" value="Publish" class="u-form-control-hidden">
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 {% endblock %}
