@@ -196,7 +196,6 @@ class ModelTests(TestCase):
   
     def test_str_method(self):
         category_py = Category.objects.get(name="Animal")
-        #product_py = Product.objects.get(name="Squeaky Bone")
 
         self.assertEqual(str(category_py), "Animal",
                          f"{FAILURE_HEADER} The __str__ method is not implemented correctly in category{FAILURE_FOOTER}")
@@ -459,7 +458,8 @@ class LoginTests(TestCase):
                          f"{FAILURE_HEADER}There is no redirection{FAILURE_FOOTER}")
         self.assertEqual(response.url, reverse('store:home'),
                          f"{FAILURE_HEADER}Did not redirect to the home page.{FAILURE_FOOTER}")
-        
+
+
 class LogoutTests(TestCase):
     def test_request(self):
         user_object = create_user_object()
@@ -480,6 +480,35 @@ class LogoutTests(TestCase):
                         f"{FAILURE_HEADER}Did not log the user out{FAILURE_FOOTER}")
 
 
+def get_template(path_to_template):
+    f = open(path_to_template, 'r')
+    template_str = ""
+
+    for line in f:
+        template_str = f"{template_str}{line}"
+
+    f.close()
+    return template_str
+
+
+class RegistrationTest(TestCase):
+
+    def test_registration_view_exists(self):
+        url = ''
+        try:
+            url = reverse('registration_register')
+        except:
+            pass
+        self.assertEqual(url, '/accounts/register/', f"{FAILURE_HEADER}Fail to map the register{FAILURE_FOOTER}")
+
+
+    def test_registration_get_response(self):
+        request = self.client.get(reverse('registration_register'))
+        content = request.content.decode('utf-8')
+
+        self.assertTrue('action="."' in content,
+                        f"{FAILURE_HEADER}Point to the wrong{FAILURE_FOOTER}")
+
 
 class PopulationScriptTests(TestCase):
     def setUp(self):
@@ -494,9 +523,6 @@ class PopulationScriptTests(TestCase):
         populate_store.populate()
 
     def test_categories(self):
-        """
-        There should be three categories from populate_rango -- Python, Django and Other Frameworks.
-        """
         categories = Category.objects.filter()
         categories_len = len(categories)
         categories_strs = map(str, categories)
