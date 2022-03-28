@@ -64,7 +64,12 @@ Profile for {{ selected_user.username }}
                         class="u-align-center-md u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-16-xl u-size-17-lg u-size-17-sm u-size-17-xs u-size-60-md u-layout-cell-2">
                         <div class="u-container-layout u-valign-top u-container-layout-2">
                             <img alt="" class="u-image u-image-circle u-image-1"
-                                src="{{ MEDIA_URL }}{{ user_profile.picture }}" data-image-width="1280"
+                                {%if user_profile.picture != ""%}
+                                    src="{{ MEDIA_URL }}{{ user_profile.picture }}" 
+                                {%else%}
+                                    src="{% static 'images/placeholder.png' %}" 
+                                {%endif%}
+                                data-image-width="1280"
                                 data-image-height="1280">
                         </div>
                     </div>

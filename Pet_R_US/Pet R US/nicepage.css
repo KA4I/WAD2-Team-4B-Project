@@ -18446,7 +18446,6 @@ a.pswp__share--download:hover {
 .u-list-control {
   display: flex;
   position: relative;
-  justify-content: center;
 }
 .u-list:not(.u-repeater),
 .u-blog:not(.u-repeater),
