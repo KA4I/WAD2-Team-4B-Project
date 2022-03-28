@@ -1,4 +1,5 @@
 from datetime import datetime
+from itertools import product
 from types import new_class
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -242,7 +243,31 @@ class AddCartView(View):
         except Exception as e:
             print(e)
             return HttpResponse(-1)
-
+        
+class UpdateCartView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        product_id = request.GET["product_id"]
+        user_id = request.GET["user"]
+        quantity = request.GET["quantity"]
+        
+        try:
+            product = Product.objects.get(id=int(product_id))
+            user = User.objects.get(id=int(user_id))
+        except Product.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError:
+            return HttpResponse(-1)
+        
+        try:
+            cart = Cart.objects.get_or_create(user=user, product=product)[0]
+            cart.quantity = quantity
+            cart.save()
+            return redirect(reverse('store:cart'))
+        except Exception as e:
+            print(e)
+            return HttpResponse(-1)
+        
 class RemoveCartView(View):
     @method_decorator(login_required)
     def get(self, request):

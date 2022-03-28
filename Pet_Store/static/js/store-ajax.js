@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    function round(value, decimals) {
+        return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+    }
     $('#like_btn').click(function() {
         var productIdVar;
         productIdVar = $(this).attr('data-productid');
@@ -35,6 +38,29 @@ $(document).ready(function() {
             })
     });
 
+    $('.quantity_store').keyup(function() {
+        var userIdVar, quantity, productIdVar;
+        var element = $(this);
+
+        userIdVar = $('#order_btn').attr('data-user');
+        productIdVar = $(this).attr('data-productid');
+        quantity = parseInt($(this).val());
+        
+        
+
+        $.get('/store/update_cart/',
+            {'user': userIdVar, 'quantity':quantity, 'product_id': productIdVar},
+            function(data) {
+                var total = 0
+                $('.quantity_store').each(function(i, obj) {
+                    total += parseFloat($(obj).attr('data-productprice')*parseInt($(obj).val()));
+                });
+                $(element).attr('value', quantity);
+                $('#total_cost').attr('value', round(total,2));
+                $('#total_cost').text("Total: £" +  round(total,2));
+            })
+    });
+
 
     //$('#remove_btn').click(function() {
         //var productIdVar, userIdVar;
@@ -49,7 +75,7 @@ $(document).ready(function() {
             //})
     //});
 });
-$(document).on("click", ".remove_btn", function(){
+$(document).on("click", ".u-cart-remove-item", function(){
     var productIdVar, userIdVar;
     productIdVar = $(this).attr('data-productid');
     userIdVar = $(this).attr('data-user');
@@ -57,8 +83,13 @@ $(document).on("click", ".remove_btn", function(){
     $.get('/store/remove_cart/',
     {'product_id': productIdVar, 'user': userIdVar},
     function(data) {
-        $('#Removed').html("Removed an item, please refresh this page.");
-        $('#remove_btn').hide();
+        $('#'+productIdVar).remove();
+        var total = 0
+        $('.quantity_store').each(function(i, obj) {
+            total += parseFloat($(obj).attr('data-productprice')*parseInt($(obj).val()));
+        });
+        $('#total_cost').attr('value', round(total,2));
+        $('#total_cost').text("Total: £" + round(total,2));
     })
 });
     
