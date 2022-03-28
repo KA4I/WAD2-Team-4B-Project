@@ -184,8 +184,7 @@ class ModelTests(TestCase):
         Category.objects.get_or_create(name="Animal", views=188, icon="images/2965100.png")
         user = User.objects.create_user(username="TestUser", email="email@email.com", password="123456user")
 
-        #Product.objects.get_or_create(uid=1, name="Squeaky Bone", description="A toy bone that makes a sound!",
-                                      #price=2.99, likes=1)
+       
 
     def test_category_model(self):
         category_py = Category.objects.get(name="Animal")
@@ -194,24 +193,14 @@ class ModelTests(TestCase):
         self.assertEqual(category_py.icon, "images/2965100.png",
                          f"{FAILURE_HEADER}Test Category icon failed{FAILURE_FOOTER}")
 
-    #def test_Product_model(self):
-        #product_py = Product.objects.get(name="Squeaky Bone")
-
-        #self.assertEqual(product_py.uid, 1, f"{FAILURE_HEADER}Test Product uid failed{FAILURE_FOOTER}")
-        #self.assertEqual(product_py.description, 'A toy bone that makes a sound!',
-                         #f"{FAILURE_HEADER}Test Product description failed{FAILURE_FOOTER}")
-        #self.assertEqual(product_py.price, 2.99, f"{FAILURE_HEADER}Test Product price failed{FAILURE_FOOTER}")
-        #self.assertEqual(product_py.likes, 1, f"{FAILURE_HEADER}Test Product likes failed{FAILURE_FOOTER}")
-
+  
     def test_str_method(self):
         category_py = Category.objects.get(name="Animal")
         #product_py = Product.objects.get(name="Squeaky Bone")
 
         self.assertEqual(str(category_py), "Animal",
                          f"{FAILURE_HEADER} The __str__ method is not implemented correctly in category{FAILURE_FOOTER}")
-        #self.assertEqual(str(product_py), "Squeaky Bone",
-                         #f"{FAILURE_HEADER} The __str__ method is not implemented correctly in product{FAILURE_FOOTER}")
-
+       
 
 class FormClassTest(TestCase):
     def test_form_exists(self):
@@ -294,6 +283,7 @@ class AdminInterfaceTests(TestCase):
                         f"{FAILURE_HEADER}The Cart model was not found in the admin interface.{FAILURE_FOOTER}")
         self.assertTrue('Review' in response_body,
                         f"{FAILURE_HEADER}The Review model was not found in the admin interface. {FAILURE_FOOTER}")
+
 
 
 class HomePageTests(TestCase):
@@ -469,6 +459,26 @@ class LoginTests(TestCase):
                          f"{FAILURE_HEADER}There is no redirection{FAILURE_FOOTER}")
         self.assertEqual(response.url, reverse('store:home'),
                          f"{FAILURE_HEADER}Did not redirect to the home page.{FAILURE_FOOTER}")
+        
+class LogoutTests(TestCase):
+    def test_request(self):
+        user_object = create_user_object()
+        self.client.login(username='testuser', password='testabc123')
+        try:
+            self.assertEqual(user_object.id, int(self.client.session['_auth_user_id']),
+                             f"{FAILURE_HEADER}Cannot log user in {FAILURE_FOOTER}")
+        except KeyError:
+            self.assertTrue(False,
+                            f"{FAILURE_HEADER}When attempting to log a user in, it failed..{FAILURE_FOOTER}")
+
+        response = self.client.get(reverse('store:logout'))
+        self.assertEqual(response.status_code, 302,
+                         f"{FAILURE_HEADER}Logging out a user should cause a redirect.{FAILURE_FOOTER}")
+        self.assertEqual(response.url, reverse('store:home'),
+                         f"{FAILURE_HEADER}When logging out a user,should then redirect them to the homepage. {FAILURE_FOOTER}")
+        self.assertTrue('_auth_user_id' not in self.client.session,
+                        f"{FAILURE_HEADER}Did not log the user out{FAILURE_FOOTER}")
+
 
 
 class PopulationScriptTests(TestCase):
