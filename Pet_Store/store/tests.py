@@ -480,17 +480,6 @@ class LogoutTests(TestCase):
                         f"{FAILURE_HEADER}Did not log the user out{FAILURE_FOOTER}")
 
 
-def get_template(path_to_template):
-    f = open(path_to_template, 'r')
-    template_str = ""
-
-    for line in f:
-        template_str = f"{template_str}{line}"
-
-    f.close()
-    return template_str
-
-
 class RegistrationTest(TestCase):
 
     def test_registration_view_exists(self):
