@@ -89,6 +89,10 @@
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
                                 href="{% url 'store:cart' user.username %}" style="padding: 10px 0px;">Cart</a>
                             </li>
+                            <li class="u-nav-item"><a
+                                class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
+                                href="{% url 'store:logout' %}" style="padding: 10px 0px;">Log Out</a>
+                            </li>
                         {% else %} 
                             <li class="u-nav-item"><a
                                 class="u-border-2 u-border-active-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-hover-black u-text-white"
